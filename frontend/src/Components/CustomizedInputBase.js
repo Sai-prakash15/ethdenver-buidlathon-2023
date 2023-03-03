@@ -16,6 +16,7 @@ import {
 } from "../redux/reducers/Counter/counter.actions"
 import { connect } from 'react-redux';
 import axios from 'axios';
+import { backend_url } from '../constants';
 
 const propmts = ["What NFTs are trending in the last week?", "What is the address for the CryptoPunks collection?"]
 const prompt = propmts[Math.floor(Math.random()*propmts.length)]
@@ -30,7 +31,7 @@ export function CustomizedInputBase(props) {
     // console.log(input)
     props.apiCalled(true)
 
-    const res = await axios.post('http://127.0.0.1:5000/api/v1/dashboard', {
+    const res = await axios.post(`${backend_url}/api/v1/dashboard`, {
       input: input,
       subgraph: subgraph,
     })
