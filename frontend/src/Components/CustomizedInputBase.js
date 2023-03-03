@@ -15,6 +15,7 @@ import {
   setData,
 } from "../redux/reducers/Counter/counter.actions"
 import { connect } from 'react-redux';
+import axios from 'axios';
 
 const propmts = ["What NFTs are trending in the last week?", "What is the address for the CryptoPunks collection?"]
 const prompt = propmts[Math.floor(Math.random()*propmts.length)]
@@ -29,14 +30,14 @@ export function CustomizedInputBase(props) {
     // console.log(input)
     props.apiCalled(true)
 
-    // const res = await axios.post('http://127.0.0.1:5000/api/v1/dashboard', {
-    //   input: input,
-    //   subgraph: subgraph,
-    // })
+    const res = await axios.post('http://127.0.0.1:5000/api/v1/dashboard', {
+      input: input,
+      subgraph: subgraph,
+    })
 
     // const persons = res.data;
-    props.setData([{"decimals":9,"id":"0xcf0c122c6b73ff809c693db761e7baebe62b6a2e","name":"FLOKI","symbol":"FLOKI","transferCount":274254},{"decimals":18,"id":"0x320623b8e4ff03373931769a31fc52a4e78b5d70","name":"Reserve Rights","symbol":"RSR","transferCount":"121409"},{"decimals":18,"id":"0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc","name":"Hop","symbol":"HOP","transferCount":"78497"},{"decimals":18,"id":"0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18","name":"Chain","symbol":"XCN","transferCount":"70327"},{"decimals":9,"id":"0xa67e9f021b9d208f7e3365b2a155e3c55b27de71","name":"KleeKai","symbol":"KLEE","transferCount":"37061"}]);
-    // props.setData(res.data);
+    // props.setData([{"decimals":9,"id":"0xcf0c122c6b73ff809c693db761e7baebe62b6a2e","name":"FLOKI","symbol":"FLOKI","transferCount":274254},{"decimals":18,"id":"0x320623b8e4ff03373931769a31fc52a4e78b5d70","name":"Reserve Rights","symbol":"RSR","transferCount":"121409"},{"decimals":18,"id":"0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc","name":"Hop","symbol":"HOP","transferCount":"78497"},{"decimals":18,"id":"0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18","name":"Chain","symbol":"XCN","transferCount":"70327"},{"decimals":9,"id":"0xa67e9f021b9d208f7e3365b2a155e3c55b27de71","name":"KleeKai","symbol":"KLEE","transferCount":"37061"}]);
+    props.setData(res.data?.output);
 
     props.apiCalled(false)
     // console.log(persons)
