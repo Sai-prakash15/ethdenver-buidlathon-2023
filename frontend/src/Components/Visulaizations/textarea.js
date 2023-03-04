@@ -9,14 +9,14 @@ export default function Variants(props) {
 const text = `Graph Query:\nSome of our debates seem eternal, `
   return (
 
-    <Paper variant="outlined" sx={{display: 'flex', alignItems: 'center', width: "80%", flexGrow: 0, marginTop: "10px", fontSize: "18px",
+    <Paper variant="outlined" sx={{display: 'flex', alignItems: 'center', maxWidth: "80%", flexGrow: 0, marginTop: "10px", fontSize: "18px",
       fontFamily: 'system-ui', paddingLeft:"10px"}} >
       <TypeAnimation
             cursor={false}
             sequence={[
                 `Graph Query:\n ${props.text}`
             ]}
-            speed={60}
+            speed={80}
             wrapper="pre"
             repeat={1}
       />
