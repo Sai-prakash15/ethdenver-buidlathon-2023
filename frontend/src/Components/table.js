@@ -85,7 +85,7 @@ export function StickyHeadTable(props) {
             <>
             {/* <TypeWriter content={tree} speed={100}/> */}
           <Variants text={data.chatgpt_gql}/>
-          <RowRadioButtonsGroup/>
+          {/* <RowRadioButtonsGroup/> */}
           {visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
