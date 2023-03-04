@@ -1,11 +1,7 @@
-import { Alert, Button, ClickAwayListener, Snackbar, Typography } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
-import logo from '../images/logo_1.png';
-import name from '../images/name_1.png';
+import {  Typography } from '@mui/material';
+import logo from '../images/logo.png';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import * as React from 'react';
 import { connect, useDispatch } from 'react-redux';
