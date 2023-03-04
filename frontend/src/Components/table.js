@@ -11,7 +11,18 @@ import { connect } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import {humanize as h} from "@jsdevtools/humanize-anything"
 import humanize from 'humanize-plus';
+<<<<<<< HEAD
 ;
+=======
+import Variants, { TypeWriter } from './Visulaizations/textarea';
+import RowRadioButtonsGroup from './input/Radio';
+import BarVis from './Visulaizations/BarGraph';
+import LineVis from './Visulaizations/LineChart';
+import PieVis from './Visulaizations/Pie';
+import BubbleVis from './Visulaizations/Bubble';
+import Footer from './footer';
+import Feedback from './input/feedback';
+>>>>>>> 6539b3f (footer)
 
 
 function buildColumns(data){
@@ -112,6 +123,31 @@ export function StickyHeadTable(props) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+<<<<<<< HEAD
+=======
+  }
+    )
+
+    (
+      {visualization == "bar-graph" && (<BarVis/>)}
+    )
+    (
+      {visualization == "line-chart" && (<LineVis/>)}
+    )
+    (
+      {visualization === "pie-chart" && (<PieVis/>)}
+    )
+    (
+      {visualization === "bubble" && (<BubbleVis/>)}
+    )
+    {
+      <Footer/>
+    }
+    {
+      <Feedback/>
+    }
+    </>
+>>>>>>> 6539b3f (footer)
   ));
 }}
 

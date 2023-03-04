@@ -61,7 +61,7 @@ export default function PieVis(){
       };
     
     return (
-        <Paper variant="outlined" sx={{ height:"350px", width:"350px", marginTop: "10px",
+        <Paper variant="outlined" sx={{ height:"350px",alignItems: 'center', width:"350px", marginTop: "10px",
        p:"10px"}} >
         <Pie data={data} options={config} />
         </Paper>

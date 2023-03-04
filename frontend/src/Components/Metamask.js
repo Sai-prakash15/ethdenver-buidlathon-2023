@@ -6,7 +6,7 @@ import { useSnackbar } from 'notistack';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect, useDispatch } from 'react-redux';
 import { SUCCESS } from '../redux/reducers/Counter/counter.types';
-import { itemSuccess } from '../redux/reducers/Counter/counter.actions';
+import { itemSuccess, setMetamaskConnection, setWalletAddress } from '../redux/reducers/Counter/counter.actions';
 
 const theme = createTheme({
   status: {
@@ -23,8 +23,9 @@ const theme = createTheme({
 
 function Metamask (props){
   const dispatch = useDispatch();
-  const  [selectedAddress, setSelectedAddress] = useState("");
-  const  [connected, setConnected] = useState("");
+  // const  [selectedAddress, setSelectedAddress] = useState("");
+  // const  [connected, setConnected] = useState("");
+  const {metamask_connected, setMetamaskConnection, setWalletAddress } = props;
   const  [balance, setBalance] = useState("");
   const [haveMetamask, sethaveMetamask] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
@@ -35,15 +36,15 @@ function Metamask (props){
     const accounts = await provider.send("eth_requestAccounts", []);
     const balance = await provider.getBalance(accounts[0]);
     const balanceInEther = ethers.utils.formatEther(balance);
-    setSelectedAddress(accounts[0]);
-    setConnected(true)
+    setWalletAddress(accounts[0]);
+    setMetamaskConnection(true)
     if(accounts[0]){
       enqueueSnackbar('Connected to Metamask');
     }
     setBalance(balanceInEther);}
     catch{
       enqueueSnackbar('Download metamask extension to connect your wallet');
-      setConnected(false)
+      setMetamaskConnection(false)
     }
   }
   }
@@ -76,7 +77,7 @@ function Metamask (props){
   }, []);
 
   const renderMetamask = () => {
-    if (!connected) {
+    if (!metamask_connected) {
       return (
         
         // <button onClick={() => this.connectToMetamask()}>Connect to Metamask</button>
@@ -87,7 +88,7 @@ function Metamask (props){
         <>
         <Button variant="contained" sx={{ position: "sticky", top: 0, marginRight:"10px"}}>
         Dashboard
-      </Button>
+        </Button>
         <Button variant="contained" sx={{ position: "sticky", top: 0}} color="success">
           Connected
         </Button>
@@ -107,4 +108,18 @@ function Metamask (props){
 
 
 
-export default Metamask;
+const mapStateToProps = state => {
+  return {
+    metamask_connected: state.counter.metamask_connected,
+    wallet_address: state.counter.wallet_address
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    setMetamaskConnection: (data) => dispatch(setMetamaskConnection(data)),
+    setWalletAddress: (data) => dispatch(setWalletAddress(data))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Metamask);
