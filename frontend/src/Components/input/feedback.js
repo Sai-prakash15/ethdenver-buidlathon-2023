@@ -45,7 +45,7 @@ function Feedback(props) {
    
   return  metamask_connected && (
     <Box sx={{ display: 'inline-flex' }}>
-    <Typography variant="p" sx={{color:"white", fontSize:"25px", marginTop:"18px"}}>Expected Result ?</Typography>
+    <Typography variant="p" sx={{color:"white", fontSize:"25px", marginTop:"18px", fontFamily:"sans-serif"}}>Expected Result ?</Typography>
     <ThumbUpIcon className={`btn ${activeBtn === "like" ? "like-active" : ""}`} sx={{marginLeft:"10px"}} onClick={handleLikeClick}/>
     <ThumbDownIcon className={`btn ${activeBtn === "dislike" ? "dislike-active" : ""}`} onClick={handleDisikeClick}/>
     </Box>

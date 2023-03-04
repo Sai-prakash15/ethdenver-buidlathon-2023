@@ -86,10 +86,10 @@ function Metamask (props){
     } else {
       return (
         <>
-        <Button variant="contained" sx={{ position: "sticky", top: 0, marginRight:"10px"}}>
+        <Button variant="contained" sx={{ position: "sticky", top: 0, marginRight:"10px", backgroundColor: "#0074d7", color:"white"}}>
         Dashboard
         </Button>
-        <Button variant="contained" sx={{ position: "sticky", top: 0}} color="success">
+        <Button variant="contained" sx={{ position: "sticky", top: 0, backgroundColor: "#0074d7", color:"white"}}>
           Connected
         </Button>
         </>
