@@ -29,14 +29,13 @@ function buildColumns(data){
           return h(value)} }})
 
     }
-
     
     return columns
     
 }
 
 export function StickyHeadTable(props) {
-    
+  let columns
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 //   console.log(props.data);
@@ -48,7 +47,12 @@ export function StickyHeadTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  let columns = props.data ? buildColumns(props?.data) : [];
+  if(props.data && Object.keys(props.data).length !== 0){
+     columns = buildColumns(props?.data);
+  }
+  else{
+    columns = []
+  }
   if(props.isLoading){
     return (
       <CircularProgress sx={{ align: 'center', marginTop:"10px",} }  color="secondary"/>
