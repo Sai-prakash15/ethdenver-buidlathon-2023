@@ -32,6 +32,7 @@ export function CustomizedInputBase(props) {
     event.preventDefault();
 
     props.apiCalled(true)
+
     
     try{
       res = await axios.post(`${backend_url}/api/v1/dashboard`, {
@@ -51,6 +52,7 @@ export function CustomizedInputBase(props) {
 
     props.setData(res.data?.output);
     props.apiCalled(false);
+
   }
 
   const handleChange = (event) => {

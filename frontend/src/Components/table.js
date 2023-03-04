@@ -11,12 +11,7 @@ import { connect } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import {humanize as h} from "@jsdevtools/humanize-anything"
 import humanize from 'humanize-plus';
-import Variants, { TypeWriter } from './Visulaizations/textarea';
-import RowRadioButtonsGroup from './input/Radio';
-import BarVis from './Visulaizations/BarGraph';
-import LineVis from './Visulaizations/LineChart';
-import PieVis from './Visulaizations/Pie';
-import BubbleVis from './Visulaizations/Bubble';
+;
 
 
 function buildColumns(data){
@@ -40,14 +35,10 @@ function buildColumns(data){
 }
 
 export function StickyHeadTable(props) {
-  let columns, rows, data_present
+  let columns
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
-  let {data, visualization} = props;
-  const data_ = data?.output
-  if(data_ && Object.keys(data_).length !== 0){
-    data_present = true;
-  }
+//   console.log(props.data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -56,32 +47,22 @@ export function StickyHeadTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  if(data_ && data_present){
-     columns = buildColumns(data_);
-     rows = data_
+  if(props.data && Object.keys(props.data).length !== 0){
+     columns = buildColumns(props?.data);
   }
   else{
     columns = []
-    rows = []
   }
   if(props.isLoading){
     return (
       <CircularProgress sx={{ align: 'center', marginTop:"10px",} }  color="secondary"/>
   )}
   else{
-  // const tree = `Alive = True; \n while Alive:
-  //   try:
-  //    hard();
-  //   except Exception as in life:
-  //    jumpOverIt();
-  //    tryagain();`
+    let rows = props.data? props.data: []; 
+
+
   return (
-    data_present && (
-      <>
-      {/* <TypeWriter content={tree} speed={100}/> */}
-    <Variants />
-    <RowRadioButtonsGroup/>
-    ({visualization == "table" &&
+    props.data && (
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -131,30 +112,13 @@ export function StickyHeadTable(props) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
-  }
-    )
-
-    (
-      {visualization == "bar-graph" && (<BarVis/>)}
-    )
-    (
-      {visualization == "line-chart" && (<LineVis/>)}
-    )
-    (
-      {visualization === "pie-chart" && (<PieVis/>)}
-    )
-    (
-      {visualization === "bubble" && (<BubbleVis/>)}
-    )
-    </>
   ));
 }}
 
 const mapStateToProps = state => {
     return {
       data: state.counter.data,
-      isLoading: state.counter.isLoading,
-      visualization: state.counter.visualization,
+      isLoading: state.counter.isLoading
     }
   }
 
