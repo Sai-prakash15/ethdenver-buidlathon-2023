@@ -63,3 +63,34 @@ class DashboardViewer(Resource):
 
     def get(self, dashboard_id):
         return APIV1Controller().get_dashboard(dashboard_id)
+
+
+class DashboardSaver(Resource):
+    """DashboardSaver Resource
+    """
+    # to enable security uncomment line below
+    # method_decorators = [jwt_required()]
+
+
+    def post(self, dashboard_id):
+
+        wallet_address = request.get_json().get("wallet_address")
+        if wallet_address == "":
+            return 400
+
+        return 200, APIV1Controller().save_dashboard_to_user(dashboard_id, wallet_address)
+
+class DashboardForUser(Resource):
+    """DashboardForUser Resource
+    """
+    # to enable security uncomment line below
+    # method_decorators = [jwt_required()]
+
+
+    def get(self, dashboard_id, wallet_address):
+
+        wallet_address = request.get_json().get("wallet_address")
+        if wallet_address == "":
+            return 400
+
+        return 200, APIV1Controller().save_dashboard_to_user(dashboard_id, wallet_address)

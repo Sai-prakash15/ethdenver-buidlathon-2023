@@ -25,7 +25,7 @@ class APIV1Controller:
         input_sentence : _type_
         """
         ai_service = OpenAIService()
-        #gql = ai_service.request_gql_for_graph(input_sentence, subgraph)
+        # gql = ai_service.request_gql_for_graph(input_sentence, subgraph)
         gql = ai_service.request_gql_for_graph_llama(input_sentence, subgraph)
         graph_service = GraphService(protocol=subgraph)
         try:
@@ -46,3 +46,11 @@ class APIV1Controller:
 
     def get_dashboard(self, dashboard_id):
         return DashboardQueryResult.query.get(dashboard_id).to_dict()
+
+    def get_dashboards(self, wallet_address):
+        return [board.to_str() for board in DashboardQueryResult.query.where(wallet_address=wallet_address).all()]
+
+    def save_dashboard_to_user(self, dashboard_id, wallet_address):
+        dashboard = DashboardQueryResult.query.get(dashboard_id)
+        dashboard.wallet_address = wallet_address
+        DashboardService().save_dashboard_query_result(dashboard)
