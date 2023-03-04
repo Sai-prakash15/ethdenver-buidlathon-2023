@@ -4,7 +4,7 @@ import { SETDATA, API_CALLED, SET_VISUALIZATION } from './counter.types';
 const INITIAL_STATE = {
 
    isLoading: false,
-    data: "",
+    data: {},
     visualization: "table"
 };
 

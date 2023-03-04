@@ -13,7 +13,6 @@ import {humanize as h} from "@jsdevtools/humanize-anything"
 import humanize from 'humanize-plus';
 import Variants, { TypeWriter } from './Visulaizations/textarea';
 import RowRadioButtonsGroup from './input/Radio';
-import { BarController } from 'chart.js';
 import BarVis from './Visulaizations/BarGraph';
 import LineVis from './Visulaizations/LineChart';
 import PieVis from './Visulaizations/Pie';
@@ -46,10 +45,9 @@ export function StickyHeadTable(props) {
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   let {data, visualization} = props;
   const data_ = data?.output
-  if(Object.keys(data).length !== 0){
+  if(data_ && Object.keys(data_).length !== 0){
     data_present = true;
   }
-//   console.log(props.data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
   };
@@ -71,18 +69,18 @@ export function StickyHeadTable(props) {
       <CircularProgress sx={{ align: 'center', marginTop:"10px",} }  color="secondary"/>
   )}
   else{
-  const tree = `Alive = True; \n while Alive:
-    try:
-     hard();
-    except Exception as in life:
-     jumpOverIt();
-     tryagain();`
+  // const tree = `Alive = True; \n while Alive:
+  //   try:
+  //    hard();
+  //   except Exception as in life:
+  //    jumpOverIt();
+  //    tryagain();`
   return (
     data_present && (
       <>
       {/* <TypeWriter content={tree} speed={100}/> */}
     <Variants />
-    {/* <RowRadioButtonsGroup/> */}
+    <RowRadioButtonsGroup/>
     ({visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -135,7 +133,7 @@ export function StickyHeadTable(props) {
     </Paper>
   }
     )
-{/* 
+
     (
       {visualization == "bar-graph" && (<BarVis/>)}
     )
@@ -147,7 +145,7 @@ export function StickyHeadTable(props) {
     )
     (
       {visualization === "bubble" && (<BubbleVis/>)}
-    ) */}
+    )
     </>
   ));
 }}
