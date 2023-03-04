@@ -84,9 +84,9 @@ export function StickyHeadTable(props) {
      data_present && (
             <>
             {/* <TypeWriter content={tree} speed={100}/> */}
-          <Variants />
+          <Variants text={data.chatgpt_gql}/>
           <RowRadioButtonsGroup/>
-          ({visualization == "table" &&
+          {visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -137,20 +137,20 @@ export function StickyHeadTable(props) {
       />
     </Paper>
   }
-    )
+    
 
-    (
+    
       {visualization == "bar-graph" && (<BarVis/>)}
-    )
-    (
+    
+    
       {visualization == "line-chart" && (<LineVis/>)}
-    )
-    (
+    
+    
       {visualization === "pie-chart" && (<PieVis/>)}
-    )
-    (
+    
+    
       {visualization === "bubble" && (<BubbleVis/>)}
-    )
+    
     {
       <Footer/>
     }
@@ -164,7 +164,8 @@ export function StickyHeadTable(props) {
 const mapStateToProps = state => {
     return {
       data: state.counter.data,
-      isLoading: state.counter.isLoading
+      isLoading: state.counter.isLoading,
+      visualization: state.counter.visualization
     }
   }
 

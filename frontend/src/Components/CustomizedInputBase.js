@@ -44,14 +44,11 @@ export function CustomizedInputBase(props) {
   }
     catch{
       props.setData("");
-      props.setData({"output":[{"decimals":9,"id":"0xcf0c122c6b73ff809c693db761e7baebe62b6a2e","name":"FLOKI","symbol":"FLOKI","transferCount":274254},{"decimals":18,"id":"0x320623b8e4ff03373931769a31fc52a4e78b5d70","name":"Reserve Rights","symbol":"RSR","transferCount":"121409"},{"decimals":18,"id":"0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc","name":"Hop","symbol":"HOP","transferCount":"78497"},{"decimals":18,"id":"0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18","name":"Chain","symbol":"XCN","transferCount":"70327"},{"decimals":9,"id":"0xa67e9f021b9d208f7e3365b2a155e3c55b27de71","name":"KleeKai","symbol":"KLEE","transferCount":"37061"}]});
+      // props.setData({"output":[{"decimals":9,"id":"0xcf0c122c6b73ff809c693db761e7baebe62b6a2e","name":"FLOKI","symbol":"FLOKI","transferCount":274254},{"decimals":18,"id":"0x320623b8e4ff03373931769a31fc52a4e78b5d70","name":"Reserve Rights","symbol":"RSR","transferCount":"121409"},{"decimals":18,"id":"0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc","name":"Hop","symbol":"HOP","transferCount":"78497"},{"decimals":18,"id":"0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18","name":"Chain","symbol":"XCN","transferCount":"70327"},{"decimals":9,"id":"0xa67e9f021b9d208f7e3365b2a155e3c55b27de71","name":"KleeKai","symbol":"KLEE","transferCount":"37061"}]});
       props.apiCalled(false)
       enqueueSnackbar('Server error!!');
       
     }
-
-    props.setData(res.data?.output);
-    props.apiCalled(false);
 
   }
 
@@ -89,7 +86,7 @@ export function CustomizedInputBase(props) {
       autoComplete="off"
       onSubmit={Search}
     >
-      <FormControl required sx={{ width:"20%" }}>
+      <FormControl  sx={{ width:"20%" }}>
 
       <InputLabel id="sub-graph-label">SubGraph</InputLabel>
        <Select
@@ -100,7 +97,7 @@ export function CustomizedInputBase(props) {
           label="Subgraph"
           MenuProps={MenuProps}
           onChange={handleCategoryChange}
-          required
+          
           // defaultValue={subgraph}
         >
           {subgraphs.map((subgraph_) => (
@@ -121,7 +118,7 @@ export function CustomizedInputBase(props) {
         noValidate
         autoComplete="off"
         onSubmit={Search}
-        required
+        
       />
 
 
