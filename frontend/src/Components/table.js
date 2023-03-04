@@ -11,9 +11,6 @@ import { connect } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import {humanize as h} from "@jsdevtools/humanize-anything"
 import humanize from 'humanize-plus';
-<<<<<<< HEAD
-;
-=======
 import Variants, { TypeWriter } from './Visulaizations/textarea';
 import RowRadioButtonsGroup from './input/Radio';
 import BarVis from './Visulaizations/BarGraph';
@@ -22,7 +19,6 @@ import PieVis from './Visulaizations/Pie';
 import BubbleVis from './Visulaizations/Bubble';
 import Footer from './footer';
 import Feedback from './input/feedback';
->>>>>>> 6539b3f (footer)
 
 
 function buildColumns(data){
@@ -46,9 +42,14 @@ function buildColumns(data){
 }
 
 export function StickyHeadTable(props) {
-  let columns
+  let columns, rows, data_present;
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  let {data, visualization} = props;
+ const data_ = data?.output
+  if(data_ && Object.keys(data_).length !== 0){
+    data_present = true;
+  }
 //   console.log(props.data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -58,22 +59,34 @@ export function StickyHeadTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  if(props.data && Object.keys(props.data).length !== 0){
-     columns = buildColumns(props?.data);
+  if(data_ && data_present){
+        columns = buildColumns(data_);
+        rows = data_
   }
   else{
     columns = []
+    rows=[]
   }
   if(props.isLoading){
     return (
       <CircularProgress sx={{ align: 'center', marginTop:"10px",} }  color="secondary"/>
   )}
   else{
-    let rows = props.data? props.data: []; 
+     // const tree = `Alive = True; \n while Alive:
+//   try:
+ //    hard();
+  //   except Exception as in life:
+  //    jumpOverIt();
+  //    tryagain();`
 
 
   return (
-    props.data && (
+     data_present && (
+            <>
+            {/* <TypeWriter content={tree} speed={100}/> */}
+          <Variants />
+          <RowRadioButtonsGroup/>
+          ({visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -123,8 +136,6 @@ export function StickyHeadTable(props) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
-<<<<<<< HEAD
-=======
   }
     )
 
@@ -147,7 +158,6 @@ export function StickyHeadTable(props) {
       <Feedback/>
     }
     </>
->>>>>>> 6539b3f (footer)
   ));
 }}
 
