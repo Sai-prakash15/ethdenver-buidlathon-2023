@@ -1,10 +1,11 @@
-import { SETDATA, API_CALLED } from './counter.types';
+import { SETDATA, API_CALLED, SET_VISUALIZATION } from './counter.types';
 
 
 const INITIAL_STATE = {
 
    isLoading: false,
-    data: ""
+    data: "",
+    visualization: "table"
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -25,7 +26,14 @@ const reducer = (state = INITIAL_STATE, action) => {
              ...state,
              isLoading: action.data
          };
-         break;
+      
+      case SET_VISUALIZATION :  
+         return {
+             ...state,
+             visualization: action.data
+         };
+      
+
 
         
 

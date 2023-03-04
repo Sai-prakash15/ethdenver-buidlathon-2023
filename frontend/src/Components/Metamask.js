@@ -42,12 +42,10 @@ function Metamask (props){
     }
     setBalance(balanceInEther);}
     catch{
+      enqueueSnackbar('Download metamask extension to connect your wallet');
       setConnected(false)
     }
   }
-    else{
-      enqueueSnackbar('Download metamask extension to connect your wallet');
-    }
   }
   
   
@@ -61,6 +59,7 @@ function Metamask (props){
     const checkMetamaskAvailability = () => {
       if (!ethereum) {
         sethaveMetamask(false);
+
       }
       sethaveMetamask(true);
     };
@@ -76,9 +75,14 @@ function Metamask (props){
       )
     } else {
       return (
+        <>
+        <Button variant="contained" sx={{ position: "sticky", top: 0, marginRight:"10px"}}>
+        Dashboard
+      </Button>
         <Button variant="contained" sx={{ position: "sticky", top: 0}} color="success">
           Connected
         </Button>
+        </>
       );
     }
   }

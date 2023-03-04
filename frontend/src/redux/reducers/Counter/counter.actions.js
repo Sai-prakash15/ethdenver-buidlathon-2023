@@ -1,4 +1,4 @@
-import {  SETDATA, API_CALLED, SUCCESS } from './counter.types';
+import {  SETDATA, API_CALLED, SUCCESS, SET_VISUALIZATION } from './counter.types';
 
 
 export const setData = (data) => {
@@ -25,3 +25,10 @@ export const apiCalled = (data) => {
       data: data
     };
   };
+
+export const setVisualization = (data) => {
+  return {
+    type: SET_VISUALIZATION,
+    data: data
+  };
+};

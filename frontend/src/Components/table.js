@@ -11,7 +11,13 @@ import { connect } from 'react-redux';
 import { CircularProgress } from '@mui/material';
 import {humanize as h} from "@jsdevtools/humanize-anything"
 import humanize from 'humanize-plus';
-;
+import Variants, { TypeWriter } from './Visulaizations/textarea';
+import RowRadioButtonsGroup from './input/Radio';
+import { BarController } from 'chart.js';
+import BarVis from './Visulaizations/BarGraph';
+import LineVis from './Visulaizations/LineChart';
+import PieVis from './Visulaizations/Pie';
+import BubbleVis from './Visulaizations/Bubble';
 
 
 function buildColumns(data){
@@ -35,9 +41,13 @@ function buildColumns(data){
 }
 
 export function StickyHeadTable(props) {
-  let columns
+  let columns, rows, data_present
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  let {data, visualization} = props;
+  if(Object.keys(data).length !== 0){
+    data_present = true;
+  }
 //   console.log(props.data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -47,22 +57,32 @@ export function StickyHeadTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  if(props.data && Object.keys(props.data).length !== 0){
+  if(props.data && data_present){
      columns = buildColumns(props?.data);
+     rows = props.data
   }
   else{
     columns = []
+    rows = []
   }
   if(props.isLoading){
     return (
       <CircularProgress sx={{ align: 'center', marginTop:"10px",} }  color="secondary"/>
   )}
   else{
-    let rows = props.data? props.data: []; 
-
-
+  const tree = `Alive = True; \n while Alive:
+    try:
+     hard();
+    except Exception as in life:
+     jumpOverIt();
+     tryagain();`
   return (
-    props.data && (
+    data_present && (
+      <>
+      {/* <TypeWriter content={tree} speed={100}/> */}
+    <Variants/>
+    <RowRadioButtonsGroup/>
+    ({visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -112,13 +132,30 @@ export function StickyHeadTable(props) {
         onRowsPerPageChange={handleChangeRowsPerPage}
       />
     </Paper>
+  }
+    )
+
+    (
+      {visualization == "bar-graph" && (<BarVis/>)}
+    )
+    (
+      {visualization == "line-chart" && (<LineVis/>)}
+    )
+    (
+      {visualization === "pie-chart" && (<PieVis/>)}
+    )
+    (
+      {visualization === "bubble" && (<BubbleVis/>)}
+    )
+    </>
   ));
 }}
 
 const mapStateToProps = state => {
     return {
       data: state.counter.data,
-      isLoading: state.counter.isLoading
+      isLoading: state.counter.isLoading,
+      visualization: state.counter.visualization,
     }
   }
 
