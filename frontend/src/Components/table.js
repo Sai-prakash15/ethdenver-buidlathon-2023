@@ -45,6 +45,7 @@ export function StickyHeadTable(props) {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
   let {data, visualization} = props;
+  const data_ = data?.output
   if(Object.keys(data).length !== 0){
     data_present = true;
   }
@@ -57,9 +58,9 @@ export function StickyHeadTable(props) {
     setRowsPerPage(+event.target.value);
     setPage(0);
   };
-  if(props.data && data_present){
-     columns = buildColumns(props?.data);
-     rows = props.data
+  if(data_ && data_present){
+     columns = buildColumns(data_);
+     rows = data_
   }
   else{
     columns = []
@@ -80,8 +81,8 @@ export function StickyHeadTable(props) {
     data_present && (
       <>
       {/* <TypeWriter content={tree} speed={100}/> */}
-    <Variants/>
-    <RowRadioButtonsGroup/>
+    <Variants />
+    {/* <RowRadioButtonsGroup/> */}
     ({visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
@@ -134,7 +135,7 @@ export function StickyHeadTable(props) {
     </Paper>
   }
     )
-
+{/* 
     (
       {visualization == "bar-graph" && (<BarVis/>)}
     )
@@ -146,7 +147,7 @@ export function StickyHeadTable(props) {
     )
     (
       {visualization === "bubble" && (<BubbleVis/>)}
-    )
+    ) */}
     </>
   ));
 }}
