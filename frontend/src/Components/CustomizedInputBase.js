@@ -8,15 +8,14 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
-
+import axios from 'axios';
+import { backend_url } from '../constants';
 
 import {
   apiCalled,
   setData,
 } from "../redux/reducers/Counter/counter.actions"
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { backend_url } from '../constants';
 import { useSnackbar } from 'notistack';
 
 const propmts = ["What NFTs are trending in the last week?", "What is the address for the CryptoPunks collection?"]
@@ -31,7 +30,7 @@ export function CustomizedInputBase(props) {
   const Search = async (event) => {
     let res;
     event.preventDefault();
-    // console.log(input)
+
     props.apiCalled(true)
     
     try{
@@ -56,7 +55,6 @@ export function CustomizedInputBase(props) {
     // console.log(persons)
 
 
-    // navigate('/')
   }
   //   const classes = useStyles()
   const handleChange = (event) => {
