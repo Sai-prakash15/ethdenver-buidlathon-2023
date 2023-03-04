@@ -72,7 +72,7 @@ export default function BarVis(){
       };
     
     return (
-        <Paper variant="outlined" sx={{ height:"350px", width:"700px", marginTop: "10px",
+        <Paper variant="outlined" sx={{ height:"350px", width:"700px",alignItems: 'center', marginTop: "10px",
        p:"10px"}} >
         <Bar data={data} options={config} />
         </Paper>

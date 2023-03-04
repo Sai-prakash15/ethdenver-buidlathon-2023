@@ -148,7 +148,7 @@ export default function BubbleVis(){
     
     
     return (
-        <Paper variant="outlined" sx={{ height:"350px", width:"700px", marginTop: "10px",
+        <Paper variant="outlined" sx={{ height:"350px",alignItems: 'center', width:"700px", marginTop: "10px",
        p:"10px"}} >
         <Bubble data={data} options={config} />
         </Paper>

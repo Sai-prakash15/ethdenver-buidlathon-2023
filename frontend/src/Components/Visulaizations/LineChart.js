@@ -42,7 +42,7 @@ export default function LineVis(){
       };
     
     return (
-        <Paper variant="outlined" sx={{ height:"350px", width:"700px", marginTop: "10px",
+        <Paper variant="outlined" sx={{ height:"350px",alignItems: 'center', width:"700px", marginTop: "10px",
        p:"10px"}} >
         <Line data={data} options={config} />
         </Paper>
