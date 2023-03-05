@@ -4,26 +4,14 @@ import { Paper } from '@mui/material';
 import {  Line } from 'react-chartjs-2';
 
 
-export default function LineVis(){
-    
-    const labels = ["Jan", "Feb", "Mar", "apr", "may", "jun", "jul"];
-    let data = {
-      labels: labels,
-      datasets: [{
-        label: 'My First Dataset',
-        data: [65, 59, 80, 81, 56, 55, 40, 90],
-        backgroundColor: 'yellow',
-        borderWidth: 1
-      },
-      {
-        label: 'My First Dataset',
-        data: [65, 59, 80, 81, 56, 55, 40].reverse(),
-        backgroundColor: "red",
-        borderWidth: 1
-      }]
+export default function LineVis(props){
 
+    // const labels = ["Jan", "Feb", "Mar", "apr", "may", "jun", "jul"];
+    let data = {
+      labels: props.labels,
+      datasets: props.raw_data
     };
-    
+
     const config = {
         type: 'line',
         data: data,
@@ -40,7 +28,7 @@ export default function LineVis(){
           }
         },
       };
-    
+
     return (
         <Paper variant="outlined" sx={{ height:"350px",alignItems: 'center', width:"700px", marginTop: "10px",
        p:"10px"}} >
@@ -48,5 +36,3 @@ export default function LineVis(){
         </Paper>
     )
 }
-
-

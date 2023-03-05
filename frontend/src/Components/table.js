@@ -26,7 +26,7 @@ function buildColumns(data){
     var columns = []
 
     for (var index = 0; index < column_header.length; index++)
-    {   
+    {
         columns.push({id: column_header[index], label: column_header[index], minWidth: 170, align: "center",format: (value) => {
           if(typeof(value) == "number"){
             return humanize.formatNumber(value, 2)
@@ -36,9 +36,9 @@ function buildColumns(data){
           return h(value)} }})
 
     }
-    
+
     return columns
-    
+
 }
 
 export function StickyHeadTable(props) {
@@ -137,20 +137,20 @@ export function StickyHeadTable(props) {
       />
     </Paper>
   }
-    
 
-    
+
+
       {visualization == "bar-graph" && (<BarVis/>)}
-    
-    
-      {visualization == "line-chart" && (<LineVis/>)}
-    
-    
+
+
+      {visualization == "line-chart" && (<LineVis />)}
+
+
       {visualization === "pie-chart" && (<PieVis/>)}
-    
-    
+
+
       {visualization === "bubble" && (<BubbleVis/>)}
-    
+
     {
       <Footer/>
     }

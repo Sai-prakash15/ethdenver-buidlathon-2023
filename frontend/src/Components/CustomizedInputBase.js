@@ -10,13 +10,14 @@ import Select from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import axios from 'axios';
 import { backend_url } from '../constants';
-
+import {inferLineGraphLabels, recommendVisualization} from './Visulaizations/Utils';
 import {
   apiCalled,
   setData,
 } from "../redux/reducers/Counter/counter.actions"
 import { connect } from 'react-redux';
 import { useSnackbar } from 'notistack';
+import LineVis from './Visulaizations/LineChart';
 
 const propmts = ["What NFTs are trending in the last week?", "What is the address for the CryptoPunks collection?"]
 const prompt = propmts[Math.floor(Math.random()*propmts.length)]
@@ -26,6 +27,9 @@ const prompt = propmts[Math.floor(Math.random()*propmts.length)]
 export function CustomizedInputBase(props) {
   const [input, setInput] = React.useState('');
   const [subgraph, setSubgraph] = React.useState('');
+  const [labels, setLabels] = React.useState('');
+  const [useLinegraph, setUseLinegraph] = React.useState(Boolean);
+
   const { enqueueSnackbar } = useSnackbar();
   const Search = async (event) => {
     let res;
@@ -39,21 +43,29 @@ export function CustomizedInputBase(props) {
       subgraph: subgraph,
     })
     props.setData(res.data);
-    props.apiCalled(false)
+    props.apiCalled(false);
+
+    console.log(recommendVisualization(res.data.output));
+    if (recommendVisualization(res.data.output) === 'line chart'){
+      props.setLabels(inferLineGraphLabels(res.data.output));
+      setUseLinegraph(true);
+    }
+
+
   }
     catch{
       props.setData("");
       // props.setData({"output":[{"decimals":9,"id":"0xcf0c122c6b73ff809c693db761e7baebe62b6a2e","name":"FLOKI","symbol":"FLOKI","transferCount":274254},{"decimals":18,"id":"0x320623b8e4ff03373931769a31fc52a4e78b5d70","name":"Reserve Rights","symbol":"RSR","transferCount":"121409"},{"decimals":18,"id":"0xc5102fe9359fd9a28f877a67e36b0f050d81a3cc","name":"Hop","symbol":"HOP","transferCount":"78497"},{"decimals":18,"id":"0xa2cd3d43c775978a96bdbf12d733d5a1ed94fb18","name":"Chain","symbol":"XCN","transferCount":"70327"},{"decimals":9,"id":"0xa67e9f021b9d208f7e3365b2a155e3c55b27de71","name":"KleeKai","symbol":"KLEE","transferCount":"37061"}]});
       props.apiCalled(false)
       enqueueSnackbar('Server error!!');
-      
+
     }
   }
 
   const handleChange = (event) => {
 
     setSubgraph(event.target.value);
-    
+
   };
 
   const subgraphs = [{"id": "uniswap-v3", "subgraph": "uniswap-v3"},{"id": "opensea-v2", "subgraph": "opensea-v2"},{"id": "uniswap-governance", "subgraph": "uniswap-governance"},{"id": "aave-governance", "subgraph": "aave-governance"}];
@@ -95,7 +107,7 @@ export function CustomizedInputBase(props) {
           label="Subgraph"
           MenuProps={MenuProps}
           onChange={handleCategoryChange}
-          
+
           // defaultValue={subgraph}
         >
           {subgraphs.map((subgraph_) => (
@@ -116,15 +128,13 @@ export function CustomizedInputBase(props) {
         noValidate
         autoComplete="off"
         onSubmit={Search}
-        
       />
-
 
       <IconButton type="submit" sx={{ p: '10px', width:"5%", marginRight:"0px" }} aria-label="search">
         <SearchIcon type="submit" />
       </IconButton>
-      </Box>
 
+      </Box>
     </Paper>
   );
 }

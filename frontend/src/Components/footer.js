@@ -66,13 +66,12 @@ function Footer (props){
             </Button>
             </>
           );
-    } 
+    }
   }
-  
+
     return(
       <div>
-        
-        {renderFooter()}
+        { renderFooter() }
       </div>
     )
 }

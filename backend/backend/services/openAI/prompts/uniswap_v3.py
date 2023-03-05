@@ -11,21 +11,12 @@ o="""query {
    }
   }"""),
 Prompt(
-q="How much trading volume was there on June 1, 2022?",
+q="Show trading volume by day for the last month",
 o="""query {
-  start: factory(
-    id: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
-    block: { number: 14881677 }
-  ) {
-    totalVolumeUSD
-  }
-  end: factory(
-    id: "0x1F98431c8aD98523631AE4a59f267346ea31F984"
-    block: { number: 14887796 }
-  ) {
-    totalVolumeUSD
-  }
-}"""),
+  uniswapDayDatas(where: { date_gt: 1677987290 }) {
+    volumeUSD
+   }
+  }"""),
 
 
 ]
