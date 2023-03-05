@@ -9,6 +9,7 @@ import { itemSuccess } from '../redux/reducers/Counter/counter.actions';
 
 import Metamask from './Metamask';
 import MetamaskWeb3 from './Metamask-web3';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 function NavBar(props) {
@@ -46,6 +47,13 @@ function NavBar(props) {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
+  let navigate = useNavigate()
+
+
+const goToHome = (event) => {
+  navigate('/')
+}
 
 
 
@@ -94,11 +102,12 @@ function NavBar(props) {
           width: 64,
           paddingTop:"10px"
         }}
+        onClick={goToHome}
         alt="logo"
         src={logo}
       />
       <Typography variant="h6" color='#701ea5' fontFamily="Gill Sans" paddingTop="10px" gutterBottom>
-        CHAINBRAIN
+        CH<Typography variant="span" color= "#0074d7">AI</Typography>NBR<Typography variant="span" color= "#0074d7">AI</Typography>N
       </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Metamask />

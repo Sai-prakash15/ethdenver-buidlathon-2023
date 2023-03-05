@@ -54,7 +54,41 @@ the latest app schema.
 
 - For the frontend:`cd frontend` and then run `npm install` (note if you run into any issues you can run `npm install --force`)
 
-### Prerequisites
+## Crypto Market Size
+
+According to a report by Cambridge Center for Alternative Finance, as of Q3 2021, there were approximately 221 million verified cryptocurrency users worldwide, which represents an increase of 8% from 2020. However, this number does not include unverified users or those who use cryptocurrencies but have not gone through a verification process.
+
+Additionally, a survey by Finder.com found that approximately 14.4% of the American population (about 46 million people) owned some form of cryptocurrency in 2021. This number has increased from 7.95% in 2018, indicating that the number of crypto users is growing rapidly.
+
+It is also worth noting that the market capitalization of the cryptocurrency market was over $1.8 trillion as of March 2023, according to CoinMarketCap, which indicates the market's overall size and importance.
+
+### Potential Monetization Paths
+
+Freemium Model: ChainBrain can offer a freemium model where users can use the basic features of the tool for free with some limitations, and then upgrade to a paid subscription to access advanced features, such as the ability to save and share dashboards, more data sources, and personalized support.
+
+Pay-per-use Model: ChainBrain can implement a pay-per-use model where users only pay for the amount of data they use or the number of dashboards they generate. This model would be particularly attractive for users who only need to analyze data occasionally, such as small businesses or individual investors.
+
+Affiliate Marketing: ChainBrain can earn revenue by partnering with other blockchain companies and platforms and earning a commission on any purchases made by ChainBrain users through referral links. This can include exchanges, wallet providers, and other blockchain data providers.
+
+Custom Dashboards: ChainBrain can offer custom dashboard creation services to enterprise-level clients. This can be a valuable revenue stream for ChainBrain, as businesses would be willing to pay for the ability to generate custom dashboards that meet their specific needs.
+
+</div>
+
+Total Addressable Market = total users * monetization rate
+Institutions = $75 per seat (in line with costs of web2 BI tools such as Looker or Tableau) 
+Industry Analysts = $50 each
+Entrpreneurial Researchers that want to analyze the blockchain = $10 each
+
+**Some rough numbers**: 
+
+1000 institutions that use our software with an average of 100 seats * $75per seat = $7.5 Million annually.
+
+50K industry analysts * $50 per year = $2.5 Million annually.
+
+100K entrepreneurial researchers that want to analyze the blockchain * $10 per year = $1 Million annually.
+
+Those numbers would of course grow with the industry and wouldn't include the network benefits from the free, non-paying users.
+
 
 ## Roadmap
 

@@ -19,6 +19,7 @@ import PieVis from './Visulaizations/Pie';
 import BubbleVis from './Visulaizations/Bubble';
 import Footer from './footer';
 import Feedback from './input/feedback';
+import Table_ from './Visulaizations/table_';
 
 
 function buildColumns(data){
@@ -26,7 +27,7 @@ function buildColumns(data){
     var columns = []
 
     for (var index = 0; index < column_header.length; index++)
-    {   
+    {
         columns.push({id: column_header[index], label: column_header[index], minWidth: 170, align: "center",format: (value) => {
           if(typeof(value) == "number"){
             return humanize.formatNumber(value, 2)
@@ -36,29 +37,24 @@ function buildColumns(data){
           return h(value)} }})
 
     }
-    
+
     return columns
-    
+
 }
 
 export function StickyHeadTable(props) {
   let columns, rows, data_present;
-  const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+
   let {data, visualization} = props;
  const data_ = data?.output
   if(data_ && Object.keys(data_).length !== 0){
     data_present = true;
   }
+  else{
+    data_present = false;
+  }
 //   console.log(props.data);
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
-  };
 
-  const handleChangeRowsPerPage = (event) => {
-    setRowsPerPage(+event.target.value);
-    setPage(0);
-  };
   if(data_ && data_present){
         columns = buildColumns(data_);
         rows = data_
@@ -81,84 +77,36 @@ export function StickyHeadTable(props) {
 
 
   return (
-     data_present && (
+    
             <>
             {/* <TypeWriter content={tree} speed={100}/> */}
-          <Variants text={data.chatgpt_gql}/>
-          {/* <RowRadioButtonsGroup/> */}
-          {visualization == "table" &&
-    <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
-      <TableContainer sx={{ maxHeight: 440 }}>
-        <Table stickyHeader aria-label="sticky table">
-          <TableHead >
-            <TableRow >
-              {columns.map((column) => (
-                <TableCell
-                  key={column.id}
-                  align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                  sx={{textAlign: 'center', backgroundColor: '#494F55', color:'white', fontWeight: "bold"}}
-                >
-                  {column.label}
-                </TableCell>
-              ))}
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {rows
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row) => {
-                return (
-                  <TableRow hover role="checkbox" tabIndex={-1} key={row.id}>
-                    {columns.map((column) => {
-                      const value = row[column.id];
-                      return (
-                        <TableCell key={column.id} align={column.align} sx={{textAlign: 'center'}}>
-                          {column.format && typeof value === 'number'
-                            ? column.format(value)
-                            : value}
-                        </TableCell>
-                      );
-                    })}
-                  </TableRow>
-                );
-              })}
-          </TableBody>
-        </Table>
-      </TableContainer>
-      <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
-        component="div"
-        count={rows.length}
-        rowsPerPage={rowsPerPage}
-        page={page}
-        onPageChange={handleChangePage}
-        onRowsPerPageChange={handleChangeRowsPerPage}
-      />
-    </Paper>
+          {data?.chatgpt_gql && <Variants text={data.chatgpt_gql}/>}
+          {data_present &&  
+          <RowRadioButtonsGroup/>}
+          {data_present && visualization == "table" && <Table_ rows={rows} columns={columns}/>
   }
-    
 
-    
-      {visualization == "bar-graph" && (<BarVis/>)}
-    
-    
-      {visualization == "line-chart" && (<LineVis/>)}
-    
-    
-      {visualization === "pie-chart" && (<PieVis/>)}
-    
-    
-      {visualization === "bubble" && (<BubbleVis/>)}
-    
-    {
+
+
+      {data_present && visualization == "bar-graph" && (<BarVis/>)}
+
+
+      {data_present && visualization == "line-chart" && (<LineVis raw_data={data_}/>)}
+
+
+      {data_present && visualization === "pie-chart" && (<PieVis/>)}
+
+
+      {data_present && visualization === "bubble" && (<BubbleVis/>)}
+
+    {data_present &&
       <Footer/>
     }
-    {
+    {data_present &&
       <Feedback/>
     }
     </>
-  ));
+  );
 }}
 
 const mapStateToProps = state => {
