@@ -1,4 +1,3 @@
-
 import importlib
 from backend.services.openAI.prompts import PROTOCOL_TO_PROMPTS
 
@@ -15,17 +14,13 @@ Here are a list of example queries based on various graphQL schemas.
 {}"""
 
 
-
 class GraphPromptFactory:
     def __init__(self, protocol):
         self.protocol = protocol
 
     def build_prompt_for_subgraph(self, input):
         examples = PROTOCOL_TO_PROMPTS[self.protocol]
-
         prompt_string = ", ".join([prompt.to_str() for prompt in examples])
-        print("======= PROMPT STRING ========")
-        print(prompt_string)
         return self._generate_prompt(input, prompt_string)
 
     def _generate_prompt(self, input, examples):
@@ -33,7 +28,4 @@ class GraphPromptFactory:
         Take in query from user and prepend sample queries
         """
 
-        return (
-            examples
-            + PRE_PROMPT.format(input)
-        )
+        return examples + PRE_PROMPT.format(input)
