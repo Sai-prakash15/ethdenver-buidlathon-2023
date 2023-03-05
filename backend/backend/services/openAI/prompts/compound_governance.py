@@ -55,7 +55,7 @@ o="""query{
     }}}
     """),
 Prompt(
-q="What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
+q="What was the voting timeline for Against, For, and Abstain votes for proposal 86 to add MATIC to the protocol?",
 o="""{
   voteDailySnapshots(
     where: {proposal_: {id: "86"}

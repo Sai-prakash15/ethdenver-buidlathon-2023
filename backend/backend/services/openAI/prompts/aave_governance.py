@@ -3,6 +3,14 @@ from backend.services.openAI.graph_prompt import GraphPromptBase as Prompt
 
 EXAMPLES = [
 Prompt(
+q="What is the proposal with the most votes?",
+o="""query MostVotedProposal {
+  proposals(orderBy: totalWeightedVotes, orderDirection: desc, first: 1 ) {
+    id
+    totalWeightedVotes
+  }
+}"""),
+Prompt(
 q="What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
 o="""{
   voteDailySnapshots(
@@ -17,15 +25,7 @@ o="""{
     timestamp
   } 
 }
-"""), 
-Prompt(
-q="What is the aave proposal with the most votes?",
-o="""query MostVotedProposal {
-  proposals(orderBy: totalWeightedVotes, orderDirection: desc, first: 1 ) {
-    id
-    totalWeightedVotes
-  }
-}"""),
+"""),
 Prompt(
 q="Count the votes for and against the last 10 aave proposals",
 o="""query {
