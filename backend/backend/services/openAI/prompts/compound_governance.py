@@ -61,7 +61,7 @@ o="""{
     where: {proposal_: {id: "86"}
     }
     orderBy: timestamp
-    orderDirection: desc
+    orderDirection: asc
   ) {
     abstainWeightedVotes
     againstWeightedVotes
