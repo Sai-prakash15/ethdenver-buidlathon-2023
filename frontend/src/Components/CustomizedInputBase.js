@@ -49,7 +49,7 @@ export function CustomizedInputBase(props) {
     props.apiCalled(false);
 
     console.log(recommendVisualization(res.data?.output));
-    console.log(inferLineGraphLabels(res.data.output))
+    console.log(inferLineGraphLabels(res.data?.output))
     if (res.data && res.data.output && res.data?.output.length >1 && recommendVisualization(res.data?.output) === 'line-chart'){
       props.setPredictedVis("line-chart")
       setUseLinegraph(true);
