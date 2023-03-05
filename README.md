@@ -11,16 +11,17 @@ ChainBrain is an open-source data visualization tool that allows users to search
 
 ## Subgraphs we used: 
 
-Subgraphs we used: 
+We indexed our own new, subgraph for the SporkDAO Token contract: https://thegraph.com/hosted-service/subgraph/marissaposner/sporkdao-token
 
-We queried the Messart NFT Marketplace subgraphs defined in this schema: https://github.com/messari/subgraphs/blob/master/schema-nft-marketplace.graphql
-Such as:
-https://thegraph.com/explorer/subgraphs/AwoxEZbiWLvv6e3QdvdMZw4WDURdGbvPfHmZRc8Dpfz9?view=Playground&chain=mainnet
+Here is the link to the github repo: https://github.com/marissaposner/sporkdao-token-subgraph
 
-https://thegraph.com/explorer/subgraphs/GvgkY82DTAkYqRShBbPQMjF1WJyUcknXre3QPWiXrPnS?view=Playground&chain=mainnet
+As far as existing subgraphs, we created a submodule in our github repo to automatically update with the Messari Subgraphs (https://github.com/messari/subgraphs). We chose these subgraphs because they have a more standardized schema than other subgraphs and were easier to build an abstraction layer on top of them. 
 
+Some of the subgraphs in our demo include AAVE-Governance, Uniswap-V3, Uniswap-governance, Compound-governance, and OpenSea. 
 
-Example graph queries are defined here: https://github.com/marissaposner/graph-hackathon-2023/blob/main/graphql_examples.py
+We fed each subgraph's schema and a list of example queries for each schema into ChatGPT to provide it with context for that specific subgraph and its mappings. 
+
+Example graph queries for each subgraph are defined here: https://github.com/ChainBrainStudio/ethdenver-buidlathon-2023/tree/main/backend/backend/services/openAI/prompts
 
 Youtube Link to Demo: https://www.youtube.com/watch?v=DmnDch1C8EA
 
@@ -69,7 +70,7 @@ If you want to say **thank you** or/and support active development:
 - Write interesting articles about the project on [Dev.to](https://dev.to/),
   [Medium](https://medium.com/) or your personal blog.
 
-Together, we can make ChatWithTheGraph **better**!
+Together, we can make ChainBrain **better**!
 
 ## Contributing
 
@@ -88,8 +89,8 @@ For a full list of all authors and contributors, see
 
 ## Security
 
-ChatWithTheGraph follows good practices of security, but 100% security cannot be assured.
-ChatWithTheGraph is provided **"as is"** without any **warranty**. Use at your own risk.
+ChainBrain follows good practices of security, but 100% security cannot be assured.
+ChainBrain is provided **"as is"** without any **warranty**. Use at your own risk.
 
 _For more information and to report security issues, please refer to our
 [security documentation](docs/SECURITY.md)._
