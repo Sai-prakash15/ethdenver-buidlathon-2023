@@ -3,7 +3,7 @@ from backend.services.openAI.graph_prompt import GraphPromptBase as Prompt
 
 EXAMPLES = [
 Prompt(
-q="What were the results for Proposal 86?",
+q="What were the results for Proposal 86 to add MATIC to the protocol?",
 o="""query{
   proposals(where: {id: "86"}) {
     abstainWeightedVotes
@@ -16,26 +16,6 @@ q="How many votes did proposal 86 have?",
 o="""query{
   proposals(where: {id: "86"}) {
     totalWeightedVotes
-  }
-}""")
-
-Prompt(
-q="Query: What was the voting timeline for for, against, and abstain votes for proposal 86?",
-o="""query {
-  voteDailySnapshots(
-    where: {proposal_: {id: "86"}
-    }
-    orderBy: timestamp
-    orderDirection: desc
-  ) {
-    blockNumber
-    abstainWeightedVotes
-    againstWeightedVotes
-    forWeightedVotes
-    timestamp
-    proposal {
-      id
-    }
   }
 }"""),
 
@@ -73,6 +53,22 @@ o="""query{
       tokenHoldersRepresentedAmount
       id
     }}}
-    """)
+    """),
+Prompt(
+q="What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
+o="""{
+  voteDailySnapshots(
+    where: {proposal_: {id: "86"}
+    }
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    abstainWeightedVotes
+    againstWeightedVotes
+    forWeightedVotes
+    timestamp
+  } 
+}
+""")
 
 ]
