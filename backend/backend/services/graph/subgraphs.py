@@ -41,6 +41,9 @@ class SubgraphService:
             in self.deployments["deployments"][f"{protocol}-{chain}"]["services"]
         ):
             self.service_type = "decentralized-network"
+            # uniswap-v3 decentralised api keeps timing out??
+            if protocol == "uniswap-v3":
+                self.service_type = "hosted-service"
         elif (
             "hosted-service"
             in self.deployments["deployments"][f"{protocol}-{chain}"]["services"]
