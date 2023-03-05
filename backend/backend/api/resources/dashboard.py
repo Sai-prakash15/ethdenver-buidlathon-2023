@@ -13,8 +13,8 @@ DEFAULT_ADDRESS = "-1"
 
 
 class DashboardCreator(Resource):
-    """Dashboard Resource
-    """
+    """Dashboard Resource"""
+
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
 
@@ -28,7 +28,6 @@ class DashboardCreator(Resource):
 
         try:
             subgraph = request.get_json().get("subgraph")
-            print("SUBGRAPH IN TRY", subgraph)
             if subgraph == None or subgraph == "":
                 raise
         except:
@@ -41,19 +40,22 @@ class DashboardCreator(Resource):
         except:
             wallet_address = DEFAULT_ADDRESS
 
-        print("=========== input_sentence ===============")
+        print("==========user response:==========")
         print(input_sentence)
-        print("=========== subgraph ===============")
+        print("==========user subgraph:==========")
         print(subgraph)
         controller = APIV1Controller()
-        response = controller.handle_query_for_dashboard(input_sentence, subgraph, wallet_address)
+        response = controller.handle_query_for_dashboard(
+            input_sentence, subgraph, wallet_address
+        )
+        print("==========db result:==========")
         print(response)
         return response
 
 
 class DashboardViewer(Resource):
-    """DashboardViewer Resource
-    """
+    """DashboardViewer Resource"""
+
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
 
@@ -62,28 +64,28 @@ class DashboardViewer(Resource):
 
 
 class DashboardSaver(Resource):
-    """DashboardSaver Resource
-    """
+    """DashboardSaver Resource"""
+
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
 
     def post(self, dashboard_id):
-
         wallet_address = request.get_json().get("wallet_address")
         if wallet_address == "":
             return 400
 
-        return 200, APIV1Controller().save_dashboard_to_user(dashboard_id, wallet_address)
+        return 200, APIV1Controller().save_dashboard_to_user(
+            dashboard_id, wallet_address
+        )
 
 
 class DashboardForUser(Resource):
-    """DashboardForUser Resource
-    """
+    """DashboardForUser Resource"""
+
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
 
     def get(self, wallet_address):
-
         return APIV1Controller().get_dashboards(wallet_address)
 
 

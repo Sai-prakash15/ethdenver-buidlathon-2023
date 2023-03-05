@@ -6696,8 +6696,8 @@
     ]
   },
   "('uniswap-v3', 'ethereum')":{
-    "service_type":"decentralized-network",
-    "query_id":"ELUcwgpm14LKPLrBRuVvPvNKHQ9HvwmtKgKSH6123cr7",
+    "service_type":"hosted-service",
+    "query_id":"uniswap-v3-ethereum",
     "template_file_location":"subgraphs/subgraphs/uniswap-v3/protocols/uniswap-v3/config/templates/uniswap.v3.template.yaml",
     "schema_file_location":"subgraphs/subgraphs/uniswap-v3/schema.graphql",
     "mappers":[
