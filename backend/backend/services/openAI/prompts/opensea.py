@@ -38,13 +38,13 @@ EXAMPLES = [
         }""",
     ),
 Prompt(
-q="show the volume of all trades by day" 
-o="""query {
-  marketplaceDailySnapshots {
-    cumulativeTradeVolumeETH
-    dailyTradedItemCount
-    dailyTradedCollectionCount
-    timestamp
-  }
-}""")
+  q="show the volume of all trades by day",
+  o="""query {
+    marketplaceDailySnapshots {
+      cumulativeTradeVolumeETH
+      dailyTradedItemCount
+      dailyTradedCollectionCount
+      timestamp
+    }
+  }""")
 ]
