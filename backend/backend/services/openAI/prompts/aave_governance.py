@@ -2,6 +2,7 @@ from backend.services.openAI.graph_prompt import GraphPromptBase as Prompt
 
 
 EXAMPLES = [
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 
 Prompt(
@@ -23,6 +24,8 @@ o="""query {
 
 
 =======
+=======
+>>>>>>> 37d48116677ba55d9adcd4e23064a1069d15944a
     Prompt(
         q="What is the aave proposal with the most votes?",
         o="""{
@@ -30,7 +33,11 @@ o="""query {
             id
             totalWeightedVotes
           }
+<<<<<<< HEAD
         }"""
+=======
+        }""",
+>>>>>>> 37d48116677ba55d9adcd4e23064a1069d15944a
     ),
     Prompt(
         q="Count the votes for and against the last 10 aave proposals",
@@ -41,6 +48,7 @@ o="""query {
           }
         }""",
     ),
+<<<<<<< HEAD
 Prompt(
 q="How many votes did proposal 86 have?",
 o="""query{
@@ -72,4 +80,6 @@ o="""query {
 >>>>>>> Stashed changes
 =======
 >>>>>>> Stashed changes
+=======
+>>>>>>> 37d48116677ba55d9adcd4e23064a1069d15944a
 ]
