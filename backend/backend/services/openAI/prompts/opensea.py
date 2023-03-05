@@ -3,7 +3,7 @@ from backend.services.openAI.graph_prompt import GraphPromptBase as Prompt
 
 EXAMPLES = [
     Prompt(
-        q="What date were the most NFTs in the Bored Ape NFT collection traded?",
+        q="What date were the most NFTs in the Bored Ape NFT collection traded (collection id = '0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d')?",
         o="""query {
           collectionDailySnapshots(
               where: {collection: "0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d"}
@@ -37,5 +37,14 @@ EXAMPLES = [
           }
         }""",
     ),
-    
+Prompt(
+q="show the volume of all trades by day" 
+o="""query {
+  marketplaceDailySnapshots {
+    cumulativeTradeVolumeETH
+    dailyTradedItemCount
+    dailyTradedCollectionCount
+    timestamp
+  }
+}""")
 ]

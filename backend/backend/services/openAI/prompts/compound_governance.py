@@ -17,26 +17,6 @@ o="""query{
   proposals(where: {id: "86"}) {
     totalWeightedVotes
   }
-}""")
-
-Prompt(
-q="Query: What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
-o="""query {
-  voteDailySnapshots(
-    where: {proposal_: {id: "86"}
-    }
-    orderBy: timestamp
-    orderDirection: desc
-  ) {
-    blockNumber
-    abstainWeightedVotes
-    againstWeightedVotes
-    forWeightedVotes
-    timestamp
-    proposal {
-      id
-    }
-  }
 }"""),
 
 Prompt(
@@ -73,6 +53,22 @@ o="""query{
       tokenHoldersRepresentedAmount
       id
     }}}
-    """)
+    """),
+Prompt(
+q="What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
+o="""{
+  voteDailySnapshots(
+    where: {proposal_: {id: "86"}
+    }
+    orderBy: timestamp
+    orderDirection: desc
+  ) {
+    abstainWeightedVotes
+    againstWeightedVotes
+    forWeightedVotes
+    timestamp
+  } 
+}
+""")
 
 ]
