@@ -5,6 +5,7 @@ from backend.services.openAI.service import OpenAIService
 from backend.services.graph.service import GraphService
 from backend.services.dashboard.service import DashboardService
 from backend.models.dashboard import DashboardQueryResult
+from backend.services.ceramic.service import CeramicService
 
 
 def QUERY_API_RESPONSE_FORMATTER(id, chatgpt_gql, output):
@@ -55,6 +56,7 @@ class APIV1Controller:
         dashboard = DashboardQueryResult.query.get(dashboard_id)
         dashboard.user_id = wallet_address
         DashboardService().save_dashboard_query_result(dashboard)
+        CeramicService().save_feedback_with_query(dashboard)
 
     def save_dashboard_feedback(self, dashboard_id, feedback):
         dashboard =  DashboardQueryResult.query.get(dashboard_id)

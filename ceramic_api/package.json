@@ -9,6 +9,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@composedb/client": "^0.4.3",
+    "@composedb/devtools": "^0.4.3",
     "express": "^4.18.2"
   }
 }
