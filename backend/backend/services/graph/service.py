@@ -46,6 +46,7 @@ def execute_query_thegraph(subgraph_id, query, hosted=True):
         first_table_name = list(r.json()["data"].keys())[0]
         return r.json()["data"][first_table_name]
     except KeyError:
+        # TODO: error handling
         print(r.json())
 
 
@@ -67,24 +68,18 @@ class GraphService:
         )
 
         print("==========the graph response:==========\n", data)
-        if data is not None:
-            data = self.ensure_enumerable(data)
-            for dict_item in data:
-                for key, val in dict_item.items():
-                    if key == "timestamp":
-                        # print(dt.datetime.utcfromtimestamp(int(val)).strftime('%Y-%m-%d %H:%M:%S'))
-                        dict_item[key] = dt.datetime.utcfromtimestamp(
-                            int(val)
-                        ).strftime("%Y-%m-%d %H:%M:%S")
-            print("formatted data", data)
-
-            return data
-        return None
-
-    def whitelist(self):
-        # TODO: generate list of protocols that can be queried
-        # this will populate the dropdown in the f/e
-        pass
+        if data == None:
+            raise ValueError()
+        data = self.ensure_enumerable(data)
+        for dict_item in data:
+            for key, val in dict_item.items():
+                if key == "timestamp":
+                    # print(dt.datetime.utcfromtimestamp(int(val)).strftime('%Y-%m-%d %H:%M:%S'))
+                    dict_item[key] = dt.datetime.utcfromtimestamp(int(val)).strftime(
+                        "%Y-%m-%d %H:%M:%S"
+                    )
+        print("==========the graph response (formatted):==========\n", data)
+        return data
 
     def build_subgraphs_json(self):
         deployments = json.load(
@@ -108,7 +103,6 @@ class GraphService:
                     pass
         df = pd.concat(li)
         df = df.set_index(["protocol", "chain"])
-        print(df.info())
         json_dump = df.to_json(
             indent=2,
             orient="index",

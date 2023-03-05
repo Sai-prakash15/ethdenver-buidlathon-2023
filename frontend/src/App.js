@@ -7,6 +7,7 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { useEffect } from 'react';
 import { Buffer } from 'buffer';
+
 import HomeComponent from './Home';
 import DashboardComponent from './Dashboard';
 import {   Navigate, Route, Routes, useLocation } from "react-router-dom";

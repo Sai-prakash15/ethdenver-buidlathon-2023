@@ -54,7 +54,6 @@ export const setWalletAddress = (data) => {
     data: data
   };
 };
-
 export const setPredictedVis = (data) => {
   return {
     type: SET_PREDICTED_VIS,

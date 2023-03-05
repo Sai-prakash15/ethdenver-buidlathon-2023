@@ -73,7 +73,7 @@ export function CustomizedInputBase(props) {
 
   };
 
-  const subgraphs = [{"id": "uniswap-v3", "subgraph": "uniswap-v3"},{"id": "opensea-v2", "subgraph": "opensea-v2"},{"id": "uniswap-governance", "subgraph": "uniswap-governance"},{"id": "aave-governance", "subgraph": "aave-governance"},{"id": "sporkdao-token", "subgraph": "sporkdao-token"}];
+  const subgraphs = [{"id": "uniswap-v3", "subgraph": "uniswap-v3"},{"id": "opensea-v2", "subgraph": "opensea-v2"},{"id": "compound-governance", "subgraph": "compound-governance"},{"id": "sporkdao-token", "subgraph": "sporkdao-token"},{"id": "aave-governance", "subgraph": "aave-governance"},{"id": "uniswap-governance", "subgraph": "uniswap-governance"}];
   const ITEM_HEIGHT = 35;
   const ITEM_PADDING_TOP = 8;
   const MenuProps = {
@@ -103,7 +103,7 @@ export function CustomizedInputBase(props) {
     >
       <FormControl  sx={{ width:"20%" }}>
 
-      <InputLabel id="sub-graph-label">SubGraph</InputLabel>
+      <InputLabel id="sub-graph-label">Select subgraph</InputLabel>
        <Select
           labelId="sub-graph-label"
           sx={{  height:"55px", marginRight:"5px"}}
