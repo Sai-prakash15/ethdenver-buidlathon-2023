@@ -19,6 +19,14 @@ class SubgraphService:
     def __init__(self, protocol, chain):
         self.protocol = protocol
         self.chain = chain
+        if protocol == "sporkdao-token":
+            self.deployments = {"base": "sporkdao-token"}
+            self.service_type = "hosted-service"
+            self.query_id = protocol
+            self.template_file_location = f"subgraphs_custom/{protocol}/subgraph.yaml"
+            self.schema_file_location = f"subgraphs_custom/{protocol}/schema.graphql"
+            self.mappers = f"subgraphs_custom/{protocol}/src/sporkdao.ts"
+            return
         self.deployments = json.load(
             open(os.getcwdb().decode("utf-8") + "/subgraphs/deployment/deployment.json")
         )[protocol]
