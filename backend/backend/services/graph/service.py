@@ -33,8 +33,9 @@ CHAINS = [
 
 
 def execute_query_thegraph(subgraph_id, query, hosted=True):
+    namespace = "marissaposner" if subgraph_id == "sporkdao-token" else "messari"
     if hosted:
-        base_url = "https://api.thegraph.com/subgraphs/name/messari/"
+        base_url = f"https://api.thegraph.com/subgraphs/name/{namespace}/"
     else:
         base_url = f"https://gateway.thegraph.com/api/{THEGRAPH_API_KEY}/subgraphs/id/"
     query_url = f"{base_url}{subgraph_id}"
@@ -58,7 +59,6 @@ class GraphService:
             return [data]
         return data
 
-
     def query_thegraph(self, gql):
         data = execute_query_thegraph(
             self.subgraph.query_id,
@@ -73,9 +73,9 @@ class GraphService:
                 for key, val in dict_item.items():
                     if key == "timestamp":
                         # print(dt.datetime.utcfromtimestamp(int(val)).strftime('%Y-%m-%d %H:%M:%S'))
-                        dict_item[key] = dt.datetime.utcfromtimestamp(int(val)).strftime(
-                            "%Y-%m-%d %H:%M:%S"
-                        )
+                        dict_item[key] = dt.datetime.utcfromtimestamp(
+                            int(val)
+                        ).strftime("%Y-%m-%d %H:%M:%S")
             print("formatted data", data)
 
             return data
