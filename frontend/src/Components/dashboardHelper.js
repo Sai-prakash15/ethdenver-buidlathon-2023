@@ -17,16 +17,16 @@ function DashboardHelper(props) {
     const rows = data
     const [useLinegraph, setUseLinegraph] = React.useState(Boolean);
 
-if (data && data.output && data?.output.length >1 && recommendVisualization(data?.output) === 'line-chart'){
-    setUseLinegraph(true);
-   }
-
+// if (data && data?.length >1 && recommendVisualization(data) === 'line-chart'){
+//     setUseLinegraph(true);
+//    }
+//    console.log(recommendVisualization(data) )
   return (
     <>
         <Typography_  text={`${user_input}`}/>
         <Variants text={`GraphQL Query:\n ${chatgpt_gql}`}/>
         <Table_ rows={rows} columns={columns} />
-        {useLinegraph && (<LineVis raw_data={data}/>)}
+        {/* {useLinegraph && (<LineVis raw_data={data}/>)} */}
         <br/><br/>
     </>
   )

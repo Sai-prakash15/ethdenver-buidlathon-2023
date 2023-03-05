@@ -21,8 +21,8 @@ import { connect } from 'react-redux';
 import { useSnackbar } from 'notistack';
 
 
-const propmts = ["What NFTs are trending in the last week?", "What is the address for the CryptoPunks collection?"]
-const prompt = propmts[Math.floor(Math.random()*propmts.length)]
+// const propmts = ["What NFTs are trending in the last week?", "What is the address for the CryptoPunks collection?"]
+// const prompt = propmts[Math.floor(Math.random()*propmts.length)]
 
 
 
@@ -48,8 +48,8 @@ export function CustomizedInputBase(props) {
 
     props.apiCalled(false);
 
-    console.log(recommendVisualization(res.data?.output));
-    console.log(inferLineGraphLabels(res.data.output))
+    // console.log(recommendVisualization(res.data?.output));
+    // console.log(inferLineGraphLabels(res.data?.output))
     if (res.data && res.data.output && res.data?.output.length >1 && recommendVisualization(res.data?.output) === 'line-chart'){
       props.setPredictedVis("line-chart")
       setUseLinegraph(true);
@@ -115,6 +115,7 @@ export function CustomizedInputBase(props) {
           label="Select subgraph"
           MenuProps={MenuProps}
           onChange={handleCategoryChange}
+          required
           defaultValue={subgraph}
         >
           {subgraphs.map((subgraph_) => (
@@ -127,13 +128,13 @@ export function CustomizedInputBase(props) {
       <TextField
         sx={{ width:"75%"}}
         id="outlined-controlled"
-        label={prompt}
+        label={"What do you want to know?"}
         value={input}
         onChange={(event) => {
             setInput(event.target.value);
         }}
-        noValidate
         autoComplete="off"
+        required
         onSubmit={Search}
       />
 
