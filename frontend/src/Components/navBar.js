@@ -1,9 +1,7 @@
-import { Alert, Button, ClickAwayListener, Snackbar } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Badge from '@mui/material/Badge';
+import {  Typography } from '@mui/material';
+import logo from '../images/logo.png';
 import Box from '@mui/material/Box';
 import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
 import * as React from 'react';
 import { connect, useDispatch } from 'react-redux';
@@ -88,10 +86,23 @@ function NavBar(props) {
       {/* <AppBar > */}
         <Toolbar position="fixed" style={{ backgroundColor: "black"  }}>
           {/* <HomeIcon onClick={goToHome} sx={{ display: { xs: 'none', sm: 'block', cursor: 'pointer' } }} /> */}
+          {/* <img src={logo} width={100} height={64}/> */}
+          <Box
+        component="img"
+        sx={{
+          height: 64,
+          width: 64,
+          paddingTop:"10px"
+        }}
+        alt="logo"
+        src={logo}
+      />
+      <Typography variant="h6" color='#701ea5' fontFamily="Gill Sans" paddingTop="10px" gutterBottom>
+        CHAINBRAIN
+      </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Metamask />
           {/* <MetamaskWeb3/> */}
-
         </Toolbar>
       {/* </AppBar> */}
     </Box>
