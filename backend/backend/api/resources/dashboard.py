@@ -11,12 +11,12 @@ DEFAULT_INPUT = "What proposal has the most votes?"
 DEFAULT_SUBGRAPH = "aave-governance"
 DEFAULT_ADDRESS = "-1"
 
+
 class DashboardCreator(Resource):
     """Dashboard Resource
     """
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
-
 
     def post(self):
         try:
@@ -33,7 +33,6 @@ class DashboardCreator(Resource):
                 raise
         except:
             subgraph = DEFAULT_SUBGRAPH
-
 
         try:
             wallet_address = request.get_json().get("wallet_address")
@@ -52,14 +51,11 @@ class DashboardCreator(Resource):
         return response
 
 
-
-
 class DashboardViewer(Resource):
     """DashboardViewer Resource
     """
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
-
 
     def get(self, dashboard_id):
         return APIV1Controller().get_dashboard(dashboard_id)
@@ -71,7 +67,6 @@ class DashboardSaver(Resource):
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
 
-
     def post(self, dashboard_id):
 
         wallet_address = request.get_json().get("wallet_address")
@@ -80,17 +75,13 @@ class DashboardSaver(Resource):
 
         return 200, APIV1Controller().save_dashboard_to_user(dashboard_id, wallet_address)
 
+
 class DashboardForUser(Resource):
     """DashboardForUser Resource
     """
     # to enable security uncomment line below
     # method_decorators = [jwt_required()]
 
-
     def get(self, wallet_address):
 
-        # wallet_address = request.get_json().get("wallet_address")
-        # if wallet_address == "":
-        #     return 400
-
-        return  APIV1Controller().get_dashboards(wallet_address)
+        return APIV1Controller().get_dashboards(wallet_address)
