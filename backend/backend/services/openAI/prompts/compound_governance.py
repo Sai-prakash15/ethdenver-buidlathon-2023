@@ -20,7 +20,7 @@ o="""query{
 }""")
 
 Prompt(
-q="Query: What was the voting timeline for for, against, and abstain votes for proposal 86?",
+q="Query: What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
 o="""query {
   voteDailySnapshots(
     where: {proposal_: {id: "86"}
