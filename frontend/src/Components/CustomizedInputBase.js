@@ -33,7 +33,6 @@ export function CustomizedInputBase(props) {
 
     props.apiCalled(true)
 
-    
     try{
       res = await axios.post(`${backend_url}/api/v1/dashboard`, {
       input: input,
@@ -49,7 +48,6 @@ export function CustomizedInputBase(props) {
       enqueueSnackbar('Server error!!');
       
     }
-
   }
 
   const handleChange = (event) => {
