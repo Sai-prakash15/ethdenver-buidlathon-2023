@@ -23,7 +23,7 @@ We fed each subgraph's schema and a list of example queries for each schema into
 
 Example graph queries for each subgraph are defined here: https://github.com/ChainBrainStudio/ethdenver-buidlathon-2023/tree/main/backend/backend/services/openAI/prompts
 
-Youtube Link to Demo: https://www.youtube.com/watch?v=DmnDch1C8EA
+Youtube Link to Demo: https://www.youtube.com/watch?v=95XT6rkgJAc&feature=youtu.be
 
 Link to our Notion page: https://www.notion.so/ETH-Denver-2023-Hackathon-Project-40b594f5274e49148fbf9b5cae9cc213
 
