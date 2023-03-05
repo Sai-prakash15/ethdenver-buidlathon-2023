@@ -2,7 +2,6 @@ from backend.services.openAI.graph_prompt import GraphPromptBase as Prompt
 
 
 EXAMPLES = [
-
 Prompt(
 q="What date were the most NFTs in the Bored Ape NFT collection traded?",
 o="""query {
@@ -27,13 +26,13 @@ o="""query {
     timestamp
   }
 }"""),
-Prompt(
-q="how many nft collections are above 100000 ETH?",
-o="""query {
-  collections(where: {cumulativeTradeVolumeETH_gt: 100000}) {
-    id
-    cumulativeTradeVolumeETH
-  }
-}""")
-
+    Prompt(
+        q="How many NFT collections have a volume above 100000 eth?",
+        o="""query {
+          collections(where: {cumulativeTradeVolumeETH_gt: 100000}) {
+            id
+            cumulativeTradeVolumeETH
+          }
+        }""",
+    ),
 ]
