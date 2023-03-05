@@ -12,7 +12,7 @@ function RowRadioButtonsGroup(props) {
     const handleChange = (event) => {
         setVisualization(event.target.value);
       };
-    
+
   const renderRadio = ()=>{
     const {predictedVis} = props;
     switch (predictedVis) {
@@ -27,7 +27,16 @@ function RowRadioButtonsGroup(props) {
             },
           }}/>} label="Line Chart" />
          );
+      case "line-chart-timeseries":
 
+         return (
+          <FormControlLabel value="line-chart-timeseries" control={<Radio  sx={{
+            color: "white",
+            '&.Mui-checked': {
+              color: "#00FFFF",
+            },
+          }}/>} label="Line Chart Time Series" />
+         );
         //  <FormControlLabel value="pie-chart" control={<Radio  sx={{
         //   color: "white",
         //   '&.Mui-checked': {
@@ -46,7 +55,7 @@ function RowRadioButtonsGroup(props) {
         //     color: "#00FFFF",
         //   },
         // }}/>} label="Bubble Chart" />
-       
+
     default: return (<></>);
 
   }}

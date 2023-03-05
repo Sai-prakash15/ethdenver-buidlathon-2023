@@ -1,5 +1,5 @@
 import colorLib from '@kurkle/color';
-import {DateTime} from 'luxon';
+import { DateTime } from 'luxon';
 import 'chartjs-adapter-luxon';
 import { getRelativePosition, valueOrDefault } from 'chart.js/helpers';
 
@@ -44,7 +44,7 @@ export function numbers(config) {
 export function points(config) {
   const xs = this.numbers(config);
   const ys = this.numbers(config);
-  return xs.map((x, i) => ({x, y: ys[i]}));
+  return xs.map((x, i) => ({ x, y: ys[i] }));
 }
 
 export function bubbles(config) {
@@ -149,11 +149,11 @@ export function namedColor(index) {
 }
 
 export function newDate(days) {
-  return DateTime.now().plus({days}).toJSDate();
+  return DateTime.now().plus({ days }).toJSDate();
 }
 
 export function newDateString(days) {
-  return DateTime.now().plus({days}).toISO();
+  return DateTime.now().plus({ days }).toISO();
 }
 
 export function parseISODate(str) {
@@ -161,10 +161,18 @@ export function parseISODate(str) {
 
 }
 
+export function inferTimestampLabels(data, timeseriesColumn) {
+  let values = [];
+  data.forEach(datum => {
+    values.push(datum[timeseriesColumn]);
+  })
+  return values;
+}
 
 export function inferLineGraphLabels(data) {
   return Object.keys(data[0]);
 }
+
 export function inferLineGraphValues(data) {
   return Object.keys(data[0]).map(key => {
     return {
@@ -172,6 +180,21 @@ export function inferLineGraphValues(data) {
       data: data.map(obj => obj[key])
     };
   });
+}
+
+export function timeseriesColumns(data) {
+  let columns = [];
+  Object.keys(data[0]).forEach(key => {
+    if (isValidDateTime(data[0][key])) {
+      columns.push(key);
+    }
+  })
+  return columns;
+}
+
+export function isValidDateTime(dateTimeStr) {
+  const dateTimeRegex = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
+  return dateTimeRegex.test(dateTimeStr);
 }
 
 export function recommendVisualization(data) {
@@ -197,18 +220,24 @@ export function recommendVisualization(data) {
 
   // Determine the best visualization based on the data type counts
   const numFields = Object.keys(dataTypes).length;
+  const timeseriesCols = timeseriesColumns(data);
   
-  if (numFields <= 1) {
-    // Single variable, use histogram or bar chart
-    return (Object.keys(dataTypeCounts).length || dataTypeCounts.string) > 0 ? 'histogram' : null;
-  } else if (numFields === 2) {
-    // Two variables, use scatter plot or line chart
-    return (Object.keys(dataTypeCounts).length === 2) ? 'scatter plot' : 'line-chart';
-  } else if (numFields === 3) {
-    // Three variables, use 3D scatter plot or bubble chart
-    return (Object.keys(dataTypeCounts).length === 3) ? '3D scatter plot' : 'bubble';
+  if (timeseriesCols.length == 1) {
+    return 'line-chart-timeseries';
+ 
   } else {
-    // More than three variables, use parallel coordinates or heat map
-    return (Object.keys(dataTypeCounts).length > dataTypeCounts.string) ? 'parallel coordinates' : 'heat map';
+    if (numFields <= 1) {
+      // Single variable, use histogram or bar chart
+      return (Object.keys(dataTypeCounts).length || dataTypeCounts.string) > 0 ? 'histogram' : null;
+    } else if (numFields === 2) {
+      // Two variables, use scatter plot or line chart
+      return (Object.keys(dataTypeCounts).length === 2) ? 'scatter plot' : 'line-chart';
+    } else if (numFields === 3) {
+      // Three variables, use 3D scatter plot or bubble chart
+      return (Object.keys(dataTypeCounts).length === 3) ? '3D scatter plot' : 'bubble';
+    } else {
+      // More than three variables, use parallel coordinates or heat map
+      return (Object.keys(dataTypeCounts).length > dataTypeCounts.string) ? 'parallel coordinates' : 'heat map';
+    }
   }
 }

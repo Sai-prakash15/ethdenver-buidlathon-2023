@@ -7,10 +7,6 @@ import {  Line } from 'react-chartjs-2';
 import { inferLineGraphLabels, inferLineGraphValues } from './Utils';
 
 
-function getFormattedData(data){
-  
-}
-
 export default function LineVis(props){
   const [datasetIdKey, setdatasetIdKey] = useState();
 
