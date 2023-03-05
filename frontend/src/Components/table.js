@@ -15,6 +15,7 @@ import Variants, { TypeWriter } from './Visulaizations/textarea';
 import RowRadioButtonsGroup from './input/Radio';
 import BarVis from './Visulaizations/BarGraph';
 import LineVis from './Visulaizations/LineChart';
+import LineVisTimeseries from './Visulaizations/LineChartTimeseries';
 import PieVis from './Visulaizations/Pie';
 import BubbleVis from './Visulaizations/Bubble';
 import Footer from './footer';
@@ -77,11 +78,11 @@ export function StickyHeadTable(props) {
 
 
   return (
-    
+
             <>
             {/* <TypeWriter content={tree} speed={100}/> */}
           {data?.chatgpt_gql && <Variants text={data.chatgpt_gql}/>}
-          {data_present &&  
+          {data_present &&
           <RowRadioButtonsGroup/>}
           {data_present && visualization == "table" && <Table_ rows={rows} columns={columns}/>
   }
@@ -92,6 +93,9 @@ export function StickyHeadTable(props) {
 
 
       {data_present && visualization == "line-chart" && (<LineVis raw_data={data_}/>)}
+
+      {data_present && visualization == "line-chart-timeseries" && (<LineVisTimeseries raw_data={data_}/>)}
+
 
 
       {data_present && visualization === "pie-chart" && (<PieVis/>)}

@@ -29,7 +29,7 @@ const prompt = propmts[Math.floor(Math.random()*propmts.length)]
 export function CustomizedInputBase(props) {
   const [input, setInput] = React.useState('');
   const [subgraph, setSubgraph] = React.useState("aave-governance");
-  
+
   const [useLinegraph, setUseLinegraph] = React.useState(Boolean);
 
   const { enqueueSnackbar } = useSnackbar();
@@ -52,6 +52,10 @@ export function CustomizedInputBase(props) {
     // console.log(inferLineGraphLabels(res.data.output))
     if (res.data && res.data.output && res.data?.output.length >1 && recommendVisualization(res.data?.output) === 'line-chart'){
       props.setPredictedVis("line-chart")
+      setUseLinegraph(true);
+      // setVisualization("line-chart");
+     } else  if (res.data && res.data.output && res.data?.output.length >1 && recommendVisualization(res.data?.output) === 'line-chart-timeseries'){
+      props.setPredictedVis("line-chart-timeseries")
       setUseLinegraph(true);
       // setVisualization("line-chart");
      }
