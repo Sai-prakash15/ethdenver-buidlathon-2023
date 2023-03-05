@@ -27,6 +27,13 @@ o="""query {
     timestamp
   }
 }"""),
-
+Prompt(
+q="how many nft collections are above 100000 ETH?",
+o="""query {
+  collections(where: {cumulativeTradeVolumeETH_gt: 100000}) {
+    id
+    cumulativeTradeVolumeETH
+  }
+}""")
 
 ]
