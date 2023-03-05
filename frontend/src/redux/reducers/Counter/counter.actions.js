@@ -1,4 +1,4 @@
-import {  SETDATA, API_CALLED, SUCCESS, SET_VISUALIZATION, SET_METAMASKCONNECTION, SET_WALLET_ADDRESS } from './counter.types';
+import {  SETDATA, API_CALLED, SUCCESS, SET_VISUALIZATION, SET_METAMASKCONNECTION, SET_WALLET_ADDRESS, SET_HAVEMETAMASK } from './counter.types';
 
 
 export const setData = (data) => {
@@ -40,10 +40,17 @@ export const setMetamaskConnection = (data) => {
   };
 };
 
+export const setHaveMetaMask = (data) => {
+  return {
+    type: SET_HAVEMETAMASK,
+    data: data
+  };
+};
+
+
 export const setWalletAddress = (data) => {
   return {
     type: SET_WALLET_ADDRESS,
     data: data
   };
 };
-
