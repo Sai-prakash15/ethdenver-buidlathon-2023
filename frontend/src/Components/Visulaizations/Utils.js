@@ -221,11 +221,10 @@ export function recommendVisualization(data) {
   // Determine the best visualization based on the data type counts
   const numFields = Object.keys(dataTypes).length;
   const timeseriesCols = timeseriesColumns(data);
-
-
+  
   if (timeseriesCols.length == 1) {
     return 'line-chart-timeseries';
-
+ 
   } else {
     if (numFields <= 1) {
       // Single variable, use histogram or bar chart
