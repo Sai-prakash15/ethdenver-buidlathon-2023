@@ -48,7 +48,7 @@ class APIV1Controller:
         return DashboardQueryResult.query.get(dashboard_id).to_dict()
 
     def get_dashboards(self, wallet_address):
-        return [board.to_str() for board in DashboardQueryResult.query.where(wallet_address=wallet_address).all()]
+        return [board.to_dict() for board in DashboardQueryResult.query.filter_by(user_id=wallet_address).all()]
 
     def save_dashboard_to_user(self, dashboard_id, wallet_address):
         dashboard = DashboardQueryResult.query.get(dashboard_id)

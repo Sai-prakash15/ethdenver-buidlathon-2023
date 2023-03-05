@@ -87,10 +87,10 @@ class DashboardForUser(Resource):
     # method_decorators = [jwt_required()]
 
 
-    def get(self, dashboard_id, wallet_address):
+    def get(self, wallet_address):
 
-        wallet_address = request.get_json().get("wallet_address")
-        if wallet_address == "":
-            return 400
+        # wallet_address = request.get_json().get("wallet_address")
+        # if wallet_address == "":
+        #     return 400
 
-        return 200, APIV1Controller().get_dashboards(wallet_address)
+        return  APIV1Controller().get_dashboards(wallet_address)
