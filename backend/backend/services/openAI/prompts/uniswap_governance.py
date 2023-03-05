@@ -22,25 +22,21 @@ o="""query{
   }
 }"""),
 Prompt(
-q="Query: What was the voting timeline for Against, For, and Abstain votes for proposal 11?",
-o="""query {
+q="What was the voting timeline for Against, For, and Abstain votes for proposal 86?",
+o="""{
   voteDailySnapshots(
-    where: {proposal_: {id: "11"}
+    where: {proposal_: {id: "86"}
     }
     orderBy: timestamp
     orderDirection: desc
   ) {
-    blockNumber
     abstainWeightedVotes
     againstWeightedVotes
     forWeightedVotes
     timestamp
-    proposal {
-      id
-    }
-  }
-}"""),
-
+  } 
+}
+"""), 
 Prompt(
 q="What were the results for Proposal 86?",
 o="""query{
