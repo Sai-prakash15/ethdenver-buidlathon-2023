@@ -54,7 +54,17 @@ the latest app schema.
 
 - For the frontend:`cd frontend` and then run `npm install` (note if you run into any issues you can run `npm install --force`)
 
-### Prerequisites
+### Potential Monetization Paths
+
+Freemium Model: ChainBrain can offer a freemium model where users can use the basic features of the tool for free with some limitations, and then upgrade to a paid subscription to access advanced features, such as the ability to save and share dashboards, more data sources, and personalized support.
+
+Pay-per-use Model: ChainBrain can implement a pay-per-use model where users only pay for the amount of data they use or the number of dashboards they generate. This model would be particularly attractive for users who only need to analyze data occasionally, such as small businesses or individual investors.
+
+Affiliate Marketing: ChainBrain can earn revenue by partnering with other blockchain companies and platforms and earning a commission on any purchases made by ChainBrain users through referral links. This can include exchanges, wallet providers, and other blockchain data providers.
+
+Custom Dashboards: ChainBrain can offer custom dashboard creation services to enterprise-level clients. This can be a valuable revenue stream for ChainBrain, as businesses would be willing to pay for the ability to generate custom dashboards that meet their specific needs.
+
+Data Licensing: ChainBrain can sell or license the data it collects and analyzes to other businesses or organizations. This can be a lucrative revenue stream for ChainBrain, particularly if it is able to collect and analyze unique and valuable data sets that are not available elsewhere.
 
 ## Roadmap
 
