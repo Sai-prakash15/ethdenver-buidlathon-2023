@@ -7,7 +7,6 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { useEffect, useState } from 'react';
 import { Buffer } from 'buffer';
-import NavBar from './Components/navBar';
 // @ts-ignore
 window.Buffer = Buffer;
 window.process = process.env;
@@ -172,8 +171,6 @@ function App() {
         {/* <Connect haveMetamask={haveMetamask} sethaveMetamask={sethaveMetamask}/> */}
     {/* <MetamaskWeb3/> */}
       <CustomizedInputBase />
-      <ColumnGroupingTable/>
-      <ColumnGroupingTable/>
       <ColumnGroupingTable/>
       </Grid>
       {/* <header className="App-header">
