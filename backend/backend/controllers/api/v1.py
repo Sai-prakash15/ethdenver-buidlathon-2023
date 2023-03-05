@@ -55,3 +55,8 @@ class APIV1Controller:
         dashboard = DashboardQueryResult.query.get(dashboard_id)
         dashboard.wallet_address = wallet_address
         DashboardService().save_dashboard_query_result(dashboard)
+
+    def save_dashboard_feedback(self, dashboard_id, feedback):
+        dashboard =  DashboardQueryResult.query.get(dashboard_id)
+        dashboard.gql_valid = feedback
+        DashboardService().save_dashboard_query_result(dashboard)
