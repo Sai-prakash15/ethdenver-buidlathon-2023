@@ -2,7 +2,7 @@ from flask import Blueprint, current_app, jsonify
 from flask_restful import Api
 from marshmallow import ValidationError
 from backend.extensions import apispec
-from backend.api.resources import UserResource, UserList, DashboardCreator, DashboardViewer
+from backend.api.resources import UserResource, UserList, DashboardCreator, DashboardViewer, DashboardSaver, DashboardForUser
 from backend.api.schemas import UserSchema
 
 
@@ -13,7 +13,9 @@ api = Api(blueprint)
 api.add_resource(UserResource, "/users/<int:user_id>", endpoint="user_by_id")
 api.add_resource(UserList, "/users", endpoint="users")
 api.add_resource(DashboardCreator, "/dashboard", endpoint="dashboard")
-api.add_resource(DashboardViewer, "/dashboard/<int:dashboard_id>", endpoint="dashboard_view")
+api.add_resource(DashboardViewer, "/dashboard/<dashboard_id>", endpoint="dashboard_view")
+api.add_resource(DashboardForUser, "/dashboard/user/<wallet_address>", endpoint="dashboard_for_user")
+api.add_resource(DashboardSaver, "/dashboard/<int:dashboard_id>", endpoint="dashboard_saver")
 
 
 @blueprint.before_app_first_request
