@@ -15,7 +15,7 @@ export default function LineVis(props){
     const labels = inferLineGraphLabels(props.raw_data)
     // console.log(labels)
     const output = inferLineGraphValues(props.raw_data)
-    console.log(labels, output)
+    // console.log(labels, output)
     let data = {
       labels: labels,
       datasets: output

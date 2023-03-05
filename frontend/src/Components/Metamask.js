@@ -48,7 +48,7 @@ const goToDashboard = (event) => {
     // }
     setBalance(balanceInEther);}
     catch (exc){
-      console.log(exc)
+      // console.log(exc)
       if(exc.code === -32002){
         enqueueSnackbar('Metamask connection in progress, click on extenstion');
       }

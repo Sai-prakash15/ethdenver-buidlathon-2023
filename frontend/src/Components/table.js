@@ -61,6 +61,7 @@ export function StickyHeadTable(props) {
   else {
     data_present = false;
   }
+  // containsObjectData = true;
   //   console.log(props.data);
   if (!containsObjectData) {
     if (data_ && data_present) {
