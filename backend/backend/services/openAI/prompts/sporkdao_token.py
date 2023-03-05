@@ -31,4 +31,13 @@ EXAMPLES = [
             }
         }""",
     ),
+    Prompt(
+        q="What are the values of transactions over time?",
+        o="""{
+        transfers {
+            blockTimestamp
+            value
+        }
+        }""",
+    )
 ]
