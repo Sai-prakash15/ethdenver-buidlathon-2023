@@ -1,10 +1,8 @@
 <div align="center">
-  <h1 align="center">
-  hTheGraph</h1>
-  <img src="images/chainbrain.jpg" height="200">
-  <h2 align="center">A no-code, data visualization tool that allows users to easily search and generate dashboards</h2>
+  <h1 align="center">ChatWithTheGraph</h1>
+  <img src="images/chainbrainlogo.jpg" height="200">
+  <h2 align="center">A solution to view NFTs across protocols with comprehensive subgraphs by training ChatGPT</h2>
   <h2 align="center">Our submission for the Graph Hackathon at CU Boulder February 2023</h2>
-
 </div>
 
 ## About
@@ -16,7 +14,6 @@ ChainBrain is an open-source data visualization tool that allows users to search
 We indexed our own new, subgraph for the SporkDAO Token contract: https://thegraph.com/hosted-service/subgraph/marissaposner/sporkdao-token
 
 Here is the link to the github repo: https://github.com/marissaposner/sporkdao-token-subgraph
-
 
 As far as existing subgraphs, we created a submodule in our github repo to automatically update with the Messari Subgraphs (https://github.com/messari/subgraphs). We chose these subgraphs because they have a more standardized schema than other subgraphs and were easier to build an abstraction layer on top of them. 
 
