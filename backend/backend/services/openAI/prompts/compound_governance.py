@@ -3,7 +3,7 @@ from backend.services.openAI.graph_prompt import GraphPromptBase as Prompt
 
 EXAMPLES = [
 Prompt(
-q="What were the results for Proposal 86 to add MATIC to the protocol?",
+q="What were the results for Proposal 86?",
 o="""query{
   proposals(where: {id: "86"}) {
     abstainWeightedVotes
@@ -70,5 +70,4 @@ o="""{
   } 
 }
 """)
-
 ]
