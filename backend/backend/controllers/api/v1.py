@@ -53,7 +53,7 @@ class APIV1Controller:
 
     def save_dashboard_to_user(self, dashboard_id, wallet_address):
         dashboard = DashboardQueryResult.query.get(dashboard_id)
-        dashboard.wallet_address = wallet_address
+        dashboard.user_id = wallet_address
         DashboardService().save_dashboard_query_result(dashboard)
 
     def save_dashboard_feedback(self, dashboard_id, feedback):

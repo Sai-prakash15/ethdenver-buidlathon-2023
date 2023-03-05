@@ -73,10 +73,8 @@ class DashboardSaver(Resource):
         wallet_address = request.get_json().get("wallet_address")
         if wallet_address == "":
             return 400
-
-        return 200, APIV1Controller().save_dashboard_to_user(
-            dashboard_id, wallet_address
-        )
+  
+        return APIV1Controller().save_dashboard_to_user(dashboard_id, wallet_address)
 
 
 class DashboardForUser(Resource):

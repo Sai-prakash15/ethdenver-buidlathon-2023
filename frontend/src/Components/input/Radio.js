@@ -12,7 +12,44 @@ function RowRadioButtonsGroup(props) {
     const handleChange = (event) => {
         setVisualization(event.target.value);
       };
+    
+  const renderRadio = ()=>{
+    const {predictedVis} = props;
+    switch (predictedVis) {
 
+      case "line-chart":
+
+         return (
+          <FormControlLabel value="line-chart" control={<Radio  sx={{
+            color: "white",
+            '&.Mui-checked': {
+              color: "#00FFFF",
+            },
+          }}/>} label="Line Chart" />
+         );
+
+        //  <FormControlLabel value="pie-chart" control={<Radio  sx={{
+        //   color: "white",
+        //   '&.Mui-checked': {
+        //     color: "#00FFFF",
+        //   },
+        // }}/>} label="Pie chart" />
+        //       <FormControlLabel value="bar-graph" control={<Radio  sx={{
+        //   color: "white",
+        //   '&.Mui-checked': {
+        //     color: "#00FFFF",
+        //   },
+        // }}/>} label="Bar Graph" />
+        // <FormControlLabel value="bubble" control={<Radio  sx={{
+        //   color: "white",
+        //   '&.Mui-checked': {
+        //     color: "#00FFFF",
+        //   },
+        // }}/>} label="Bubble Chart" />
+       
+    default: return (<></>);
+
+  }}
   return (
     <FormControl sx={{marginTop:"10px"}}>
       <RadioGroup
@@ -30,30 +67,9 @@ function RowRadioButtonsGroup(props) {
       color: "#00FFFF",
     },
   }}/>} label="Table" />
-        <FormControlLabel value="pie-chart" control={<Radio  sx={{
-    color: "white",
-    '&.Mui-checked': {
-      color: "#00FFFF",
-    },
-  }}/>} label="Pie chart" />
-        <FormControlLabel value="bar-graph" control={<Radio  sx={{
-    color: "white",
-    '&.Mui-checked': {
-      color: "#00FFFF",
-    },
-  }}/>} label="Bar Graph" />
-  <FormControlLabel value="line-chart" control={<Radio  sx={{
-    color: "white",
-    '&.Mui-checked': {
-      color: "#00FFFF",
-    },
-  }}/>} label="Line Chart" />
-  <FormControlLabel value="bubble" control={<Radio  sx={{
-    color: "white",
-    '&.Mui-checked': {
-      color: "#00FFFF",
-    },
-  }}/>} label="Bubble Chart" />
+      {
+        renderRadio()
+      }
       </RadioGroup>
     </FormControl>
   );
@@ -62,6 +78,7 @@ function RowRadioButtonsGroup(props) {
 const mapStateToProps = state => {
     return {
       visualization: state.counter.visualization,
+      predictedVis: state.counter.predictedVis,
     }
   }
 
