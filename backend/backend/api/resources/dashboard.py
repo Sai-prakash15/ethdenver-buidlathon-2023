@@ -93,4 +93,4 @@ class DashboardForUser(Resource):
         if wallet_address == "":
             return 400
 
-        return 200, APIV1Controller().save_dashboard_to_user(dashboard_id, wallet_address)
+        return 200, APIV1Controller().get_dashboards(wallet_address)
