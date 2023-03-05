@@ -50,6 +50,9 @@ export function StickyHeadTable(props) {
   if(data_ && Object.keys(data_).length !== 0){
     data_present = true;
   }
+  else{
+    data_present = false;
+  }
 //   console.log(props.data);
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -81,12 +84,13 @@ export function StickyHeadTable(props) {
 
 
   return (
-     data_present && (
+    
             <>
             {/* <TypeWriter content={tree} speed={100}/> */}
-          <Variants text={data.chatgpt_gql}/>
-          {/* <RowRadioButtonsGroup/> */}
-          {visualization == "table" &&
+          {data?.chatgpt_gql && <Variants text={data.chatgpt_gql}/>}
+          {data_present &&  
+          <RowRadioButtonsGroup/>}
+          {data_present && visualization == "table" &&
     <Paper sx={{ width: '80%', overflow: 'hidden', align: 'center', marginTop:"10px"}}>
       <TableContainer sx={{ maxHeight: 440 }}>
         <Table stickyHeader aria-label="sticky table">
@@ -140,25 +144,25 @@ export function StickyHeadTable(props) {
 
 
 
-      {visualization == "bar-graph" && (<BarVis/>)}
+      {data_present && visualization == "bar-graph" && (<BarVis/>)}
 
 
-      {visualization == "line-chart" && (<LineVis />)}
+      {data_present && visualization == "line-chart" && (<LineVis raw_data={data_}/>)}
 
 
-      {visualization === "pie-chart" && (<PieVis/>)}
+      {data_present && visualization === "pie-chart" && (<PieVis/>)}
 
 
-      {visualization === "bubble" && (<BubbleVis/>)}
+      {data_present && visualization === "bubble" && (<BubbleVis/>)}
 
-    {
+    {data_present &&
       <Footer/>
     }
-    {
+    {data_present &&
       <Feedback/>
     }
     </>
-  ));
+  );
 }}
 
 const mapStateToProps = state => {

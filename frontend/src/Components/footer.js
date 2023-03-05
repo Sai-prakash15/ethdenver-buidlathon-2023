@@ -55,14 +55,14 @@ function Footer (props){
     if (metamask_connected) {
         return (
             <>
-          <Button variant="contained" sx={{ marginTop:"10px", backgroundColor:'#701ea5' , marginRight:"10px"}}>
+          {/* <Button variant="contained" sx={{ marginTop:"10px", backgroundColor:'#701ea5' , marginRight:"10px"}}>
             Download
-          </Button>
+          </Button> */}
             <Button variant="contained" sx={{ marginTop:"10px", backgroundColor: '#701ea5', "&.Mui-disabled": {
           background: "#eaeaea",
           color: "#c0c0c0"
         }}}  disabled={sending_request}  onClick={saveDashboard}>
-              Save
+              Save To My Dashboard
             </Button>
             </>
           );

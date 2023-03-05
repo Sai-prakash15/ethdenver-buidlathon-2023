@@ -50,9 +50,6 @@ function NavBar(props) {
 
   let navigate = useNavigate()
 
-const goToDashboard = (event) => {
-  navigate('/Dashboards')
-}
 
 const goToHome = (event) => {
   navigate('/')
@@ -110,7 +107,7 @@ const goToHome = (event) => {
         src={logo}
       />
       <Typography variant="h6" color='#701ea5' fontFamily="Gill Sans" paddingTop="10px" gutterBottom>
-        CHAINBRAIN
+        CH<Typography variant="span" color= "#0074d7">AI</Typography>NBR<Typography variant="span" color= "#0074d7">AI</Typography>N
       </Typography>
           <Box sx={{ flexGrow: 1 }} />
           <Metamask />
