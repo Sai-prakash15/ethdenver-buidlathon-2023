@@ -87,3 +87,14 @@ class DashboardForUser(Resource):
 
     def get(self, wallet_address):
         return APIV1Controller().get_dashboards(wallet_address)
+
+
+class DashboardFeedback(Resource):
+    """DashboardFeedback Resource
+    """
+    # to enable security uncomment line below
+    # method_decorators = [jwt_required()]
+
+    def post(self, dashboard_id, feedback):
+
+        return APIV1Controller().save_dashboard_feedback(dashboard_id, feedback)

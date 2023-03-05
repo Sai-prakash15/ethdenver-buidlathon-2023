@@ -10,7 +10,7 @@ class DashboardQueryResult(db.Model):
     subgraph = db.Column(db.Text)
     chain = db.Column(db.Text, default="ethereum")
     output = db.Column(db.JSON)
-    gql_valid = db.Column(db.Integer)
+    gql_valid = db.Column(db.Integer) # hacks, this is user feed
     user_id = db.Column(db.Text)
 
     def __repr__(self):
