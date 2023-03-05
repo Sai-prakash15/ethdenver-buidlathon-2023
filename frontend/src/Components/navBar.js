@@ -9,6 +9,7 @@ import { itemSuccess } from '../redux/reducers/Counter/counter.actions';
 
 import Metamask from './Metamask';
 import MetamaskWeb3 from './Metamask-web3';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 
 function NavBar(props) {
@@ -46,6 +47,16 @@ function NavBar(props) {
     setAnchorEl(null);
     handleMobileMenuClose();
   };
+
+  let navigate = useNavigate()
+
+const goToDashboard = (event) => {
+  navigate('/Dashboards')
+}
+
+const goToHome = (event) => {
+  navigate('/')
+}
 
 
 
@@ -94,6 +105,7 @@ function NavBar(props) {
           width: 64,
           paddingTop:"10px"
         }}
+        onClick={goToHome}
         alt="logo"
         src={logo}
       />

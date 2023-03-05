@@ -8,20 +8,24 @@ import store from './store'
 import NavBar from './Components/navBar';
 import { SnackbarProvider } from 'notistack';
 import { Chart, registerables } from 'chart.js'
+import {   BrowserRouter } from "react-router-dom";
 
 Chart.register(...registerables)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-   
+    <BrowserRouter>
     <Provider store={store}>
     <SnackbarProvider maxSnack={3}>
     <NavBar />
     <App />
     </SnackbarProvider>
     </Provider>
+    </BrowserRouter>
   </React.StrictMode>
 );
+
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

@@ -5,9 +5,8 @@ import { useSnackbar } from 'notistack';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { connect, useDispatch } from 'react-redux';
-import { SUCCESS } from '../redux/reducers/Counter/counter.types';
-import { itemSuccess, setMetamaskConnection, setWalletAddress } from '../redux/reducers/Counter/counter.actions';
-
+import { setMetamaskConnection, setWalletAddress } from '../redux/reducers/Counter/counter.actions';
+import {  useNavigate } from 'react-router-dom';
 const theme = createTheme({
   status: {
     danger: '#e53e3e',
@@ -29,6 +28,12 @@ function Metamask (props){
   const  [balance, setBalance] = useState("");
   // const [haveMetamask, sethaveMetamask] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
+    let navigate = useNavigate()
+
+const goToDashboard = (event) => {
+  navigate('/Dashboards')
+}
+
   const connectToMetamask = async ()=> {
     
     try{
@@ -96,7 +101,7 @@ function Metamask (props){
     } else {
       return (
         <>
-        <Button variant="contained" sx={{ position: "sticky", top: 0, marginRight:"10px", backgroundColor: "#0074d7", color:"white"}}>
+        <Button onClick={goToDashboard} variant="contained" sx={{ position: "sticky", top: 0, marginRight:"10px", backgroundColor: "#0074d7", color:"white"}}>
         Dashboard
         </Button>
         <Button variant="contained" sx={{ position: "sticky", top: 0, backgroundColor: "#0074d7", color:"white"}}>

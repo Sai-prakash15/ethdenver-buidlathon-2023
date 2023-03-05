@@ -7,12 +7,15 @@ import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
 import { useEffect } from 'react';
 import { Buffer } from 'buffer';
+import HomeComponent from './Home';
+import DashboardComponent from './Dashboard';
+import { BrowserRouter,  Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { setHaveMetaMask } from './redux/reducers/Counter/counter.actions';
-import { SET_HAVEMETAMASK } from './redux/reducers/Counter/counter.types';
 import { connect } from 'react-redux';
 // @ts-ignore
 window.Buffer = Buffer;
 window.process = process.env;
+
 function App(props) {
   const particlesInit = async (main) => {
     // console.log(main);
@@ -36,6 +39,7 @@ function App(props) {
   }, []);
 
   return (
+    
     <div className="App" >
       {/* <canvas class="particles-js-canvas-el" width="1748" height="842" style="width: 100%; height: 100%;"/> */}
       <Particles
@@ -163,19 +167,15 @@ function App(props) {
     }}
     />
     {/* <NavBar /> */}
-      <Grid
-      className="grid"
-      container
-      spacing={0}
-      direction="column"
-      alignItems="center"
-      justifyContent="center"
-      style={{ minHeight: '100vh' }}>
-        {/* <Connect haveMetamask={haveMetamask} sethaveMetamask={sethaveMetamask}/> */}
-    {/* <MetamaskWeb3/> */}
-      <CustomizedInputBase />
-      <ColumnGroupingTable/>
-      </Grid>
+    <Routes>
+      <Route path="/" element={<HomeComponent />} />
+      <Route
+        path="/dashboard"
+        element={
+            <DashboardComponent />
+        }
+      />
+    </Routes>
       {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>

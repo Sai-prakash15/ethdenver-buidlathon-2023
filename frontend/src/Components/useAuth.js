@@ -1,10 +1,11 @@
 import axios from "axios";
 import * as React from "react";
+import { connect } from "react-redux";
 import { backend_url } from "../constants";
 
 const authContext = React.createContext();
 
-function useAuth() {
+function useAuth(props) {
   const [authed, setAuthed] = React.useState(false);
 
   return {
@@ -27,12 +28,21 @@ function useAuth() {
   };
 }
 
-export function AuthProvider({ children }) {
+function AuthProvider({ children }) {
   const auth = useAuth();
 
   return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
-export default function AuthConsumer() {
+export function AuthConsumer() {
   return React.useContext(authContext);
 }
+
+const mapStateToProps = state => {
+    return {
+      metamask_connected: state.counter.metamask_connected,
+    }
+  }
+
+export default connect(mapStateToProps)(AuthProvider);
+  
