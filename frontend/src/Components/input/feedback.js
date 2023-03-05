@@ -52,10 +52,13 @@ function Feedback(props) {
     )
       
 }
+// /api/v1/dashboard/<id>/feedback
 
 const mapStateToProps = state => {
     return {
       metamask_connected: state.counter.metamask_connected,
+      wallet_address: state.counter.wallet_address,
+      data: state.counter.data,
     }
   }
   

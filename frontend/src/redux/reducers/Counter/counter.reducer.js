@@ -1,4 +1,4 @@
-import { SETDATA, API_CALLED, SET_VISUALIZATION, SET_METAMASKCONNECTION, SET_WALLET_ADDRESS } from './counter.types';
+import { SETDATA, API_CALLED, SET_VISUALIZATION, SET_METAMASKCONNECTION, SET_WALLET_ADDRESS, SET_HAVEMETAMASK } from './counter.types';
 
 
 const INITIAL_STATE = {
@@ -8,6 +8,7 @@ const INITIAL_STATE = {
     visualization: "table",
     metamask_connected: false,
     wallet_address: "",
+    have_metamask: false
 };
 
 const reducer = (state = INITIAL_STATE, action) => {
@@ -40,6 +41,12 @@ const reducer = (state = INITIAL_STATE, action) => {
          return {
              ...state,
              metamask_connected: action.data
+         };
+    
+    case SET_HAVEMETAMASK :  
+         return {
+             ...state,
+             have_metamask: action.data
          };
          
     case SET_WALLET_ADDRESS :  

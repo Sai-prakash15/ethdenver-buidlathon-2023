@@ -5,12 +5,15 @@ import CustomizedInputBase from './Components/CustomizedInputBase';
 import ColumnGroupingTable from './Components/table';
 import Particles from "react-tsparticles";
 import { loadFull } from "tsparticles";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Buffer } from 'buffer';
+import { setHaveMetaMask } from './redux/reducers/Counter/counter.actions';
+import { SET_HAVEMETAMASK } from './redux/reducers/Counter/counter.types';
+import { connect } from 'react-redux';
 // @ts-ignore
 window.Buffer = Buffer;
 window.process = process.env;
-function App() {
+function App(props) {
   const particlesInit = async (main) => {
     // console.log(main);
 
@@ -19,11 +22,11 @@ function App() {
     // starting from v2 you can add only the features you need reducing the bundle size
     await loadFull(main);
   };
-  const [haveMetamask, sethaveMetamask] = useState(true);
 
   useEffect(() => {
     const { ethereum } = window;
-    const checkMetamaskAvailability = async () => {
+    const {sethaveMetamask} = props;
+    const checkMetamaskAvailability = () => {
       if (!ethereum) {
         sethaveMetamask(false);
       }
@@ -190,5 +193,17 @@ function App() {
     </div>
   );
 }
-
-export default App;
+const mapStateToProps = state => {
+    return {
+      
+    }
+  }
+  
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      sethaveMetamask: (data) => dispatch(setHaveMetaMask(data))
+    }
+  }
+  
+export default connect(mapStateToProps, mapDispatchToProps)(App);
