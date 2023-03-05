@@ -25,12 +25,12 @@ function Metamask (props){
   const dispatch = useDispatch();
   // const  [selectedAddress, setSelectedAddress] = useState("");
   // const  [connected, setConnected] = useState("");
-  const {metamask_connected, setMetamaskConnection, setWalletAddress } = props;
+  const {metamask_connected, setMetamaskConnection, setWalletAddress, haveMetamask } = props;
   const  [balance, setBalance] = useState("");
-  const [haveMetamask, sethaveMetamask] = useState(false);
+  // const [haveMetamask, sethaveMetamask] = useState(false);
   const { enqueueSnackbar } = useSnackbar();
   const connectToMetamask = async ()=> {
-    if (haveMetamask){
+    
     try{
     const provider = new ethers.providers.Web3Provider(window.ethereum)
     const accounts = await provider.send("eth_requestAccounts", []);
@@ -38,43 +38,53 @@ function Metamask (props){
     const balanceInEther = ethers.utils.formatEther(balance);
     setWalletAddress(accounts[0]);
     setMetamaskConnection(true)
-    if(accounts[0]){
-      enqueueSnackbar('Connected to Metamask');
-    }
+    // if(accounts[0]){
+    //   enqueueSnackbar('Connected to Metamask');
+    // }
     setBalance(balanceInEther);}
-    catch{
+    catch (exc){
+      console.log(exc)
+      if(exc.code === -32002){
+        enqueueSnackbar('Metamask connection in progress, click on extenstion');
+      }
+      else{
+      
       enqueueSnackbar('Download metamask extension to connect your wallet');
+      }
       setMetamaskConnection(false)
     }
   }
-  }
+  // if (haveMetamask ){
   
-  
-
+  // connectToMetamask()
+  // }
     // <div>
         // <p>Welcome {this.state.selectedAddress}</p>
-        // <p>Your ETH Balance is: {this.state.balance}</p>
+          // <p>Your ETH Balance is: {this.state.balance}</p>
         // </div>
   useEffect(() => {
     const { ethereum } = window;
     const checkMetamaskAvailability = () => {
       if(window.ethereum) {
+        if(haveMetamask){
+        connectToMetamask()}
              window.ethereum.on('chainChanged', () => {
                 window.location.reload();
               })
-              window.ethereum.on('accountsChanged', () => {
-                window.location.reload();
+              window.ethereum.on('accountsChanged', (accounts) => {
+                if(accounts.length === 0){
+                  setWalletAddress("");
+                  setMetamaskConnection(false)
+                }
+                else{
+                  setWalletAddress(accounts[0]);
+                  setMetamaskConnection(true)
+                }
+                
               })
-        
-            }
-      if (!ethereum) {
-        sethaveMetamask(false);
-
-      }
-      sethaveMetamask(true);
-    };
+    };}
     checkMetamaskAvailability();
-  }, []);
+  }, [haveMetamask, metamask_connected]);
 
   const renderMetamask = () => {
     if (!metamask_connected) {
@@ -111,7 +121,8 @@ function Metamask (props){
 const mapStateToProps = state => {
   return {
     metamask_connected: state.counter.metamask_connected,
-    wallet_address: state.counter.wallet_address
+    wallet_address: state.counter.wallet_address,
+    haveMetamask: state.counter.have_metamask
   }
 }
 
@@ -119,6 +130,7 @@ const mapDispatchToProps = dispatch => {
   return {
     setMetamaskConnection: (data) => dispatch(setMetamaskConnection(data)),
     setWalletAddress: (data) => dispatch(setWalletAddress(data))
+
   }
 }
 
