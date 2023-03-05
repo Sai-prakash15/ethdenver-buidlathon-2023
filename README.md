@@ -3,7 +3,6 @@
   <img src="images/chainbrainlogo.jpg" height="200">
   <h2 align="center">A solution to view NFTs across protocols with comprehensive subgraphs by training ChatGPT</h2>
   <h2 align="center">Our submission for the Graph Hackathon at CU Boulder February 2023</h2>
-
 </div>
 
 ## About
@@ -11,6 +10,8 @@
 ChainBrain is an open-source data visualization tool that allows users to search and generate dashboards for any on-chain data question. With ChainBrain, users can quickly identify patterns, track trends, and discover new insights to help them optimize their strategy and operations. We are using ChatGPT to turn the users' questions into a GraphQL query that we send to various subgraphs by the Graph Protocol. We then pull in the user-requested data and display the results on the frontend. Users can connect with their crypto wallet to sign-in and save visualizations to their personal dashboards.
 
 ## Subgraphs we used: 
+
+Subgraphs we used: 
 
 We queried the Messart NFT Marketplace subgraphs defined in this schema: https://github.com/messari/subgraphs/blob/master/schema-nft-marketplace.graphql
 Such as:
