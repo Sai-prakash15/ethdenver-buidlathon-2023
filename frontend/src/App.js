@@ -9,7 +9,7 @@ import { useEffect } from 'react';
 import { Buffer } from 'buffer';
 import HomeComponent from './Home';
 import DashboardComponent from './Dashboard';
-import { BrowserRouter,  Navigate, Route, Routes, useLocation } from "react-router-dom";
+import {   Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { setHaveMetaMask } from './redux/reducers/Counter/counter.actions';
 import { connect } from 'react-redux';
 // @ts-ignore

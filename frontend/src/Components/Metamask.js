@@ -31,7 +31,7 @@ function Metamask (props){
     let navigate = useNavigate()
 
 const goToDashboard = (event) => {
-  navigate('/Dashboards')
+  navigate('/dashboard')
 }
 
   const connectToMetamask = async ()=> {

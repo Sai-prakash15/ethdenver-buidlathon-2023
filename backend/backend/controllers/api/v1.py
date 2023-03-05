@@ -30,7 +30,7 @@ class APIV1Controller:
         try:
             result = graph_service.query_thegraph(gql)
         except:
-            import pdb;pdb.set_trace()
+            
             return QUERY_API_RESPONSE_FORMATTER("-1", gql, [])
 
 
@@ -53,5 +53,7 @@ class APIV1Controller:
 
     def save_dashboard_to_user(self, dashboard_id, wallet_address):
         dashboard = DashboardQueryResult.query.get(dashboard_id)
-        dashboard.wallet_address = wallet_address
+        dashboard.user_id = wallet_address
         DashboardService().save_dashboard_query_result(dashboard)
+        import pdb;pdb.set_trace()
+ 
