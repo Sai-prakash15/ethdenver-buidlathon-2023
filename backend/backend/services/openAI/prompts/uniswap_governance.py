@@ -13,32 +13,6 @@ o="""query{
     }}}
     """),
 Prompt(
-q="What is the total number of proposals, number of proposals queued for execution, number of proposals executed, and number of proposals canceled for a governance with the ID 11?",
-o="""query {
-  proposal(id: "11") {
-    description
-    state
-    quorumVotes
-    tokenHoldersAtStart
-    delegatesAtStart
-    againstDelegateVotes
-    forDelegateVotes
-    abstainDelegateVotes
-    totalDelegateVotes
-    againstWeightedVotes
-    forWeightedVotes
-    abstainWeightedVotes
-    totalWeightedVotes
-    governanceFramework {
-      id
-      name
-      type
-      version
-    }
-  }
-}
-"""),
-Prompt(
 q="How many votes did proposal 11 have?",
 o="""query{
   proposals(where: {id: "11"}) {
@@ -65,5 +39,42 @@ o="""query {
       id
     }
   }
-}""")
+}"""),
+
+Prompt(
+q="What were the results for Proposal 86?",
+o="""query{
+  proposals(where: {id: "86"}) {
+    abstainWeightedVotes
+    againstWeightedVotes
+    forWeightedVotes
+  }
+}"""),
+
+Prompt(
+q="Summarize Proposal with ID = 86?",
+o="""query {
+  proposal(id: "86") {
+    description
+    state
+    quorumVotes
+    tokenHoldersAtStart
+    delegatesAtStart
+    againstDelegateVotes
+    forDelegateVotes
+    abstainDelegateVotes
+    totalDelegateVotes
+    againstWeightedVotes
+    forWeightedVotes
+    abstainWeightedVotes
+    totalWeightedVotes
+    governanceFramework {
+      id
+      name
+      type
+      version
+    }
+  }
+}
+""")
 ]
