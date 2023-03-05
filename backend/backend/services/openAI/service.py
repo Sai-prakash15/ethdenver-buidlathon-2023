@@ -30,7 +30,6 @@ def mapping_path(protocol):
 class OpenAIService:
     def __init__(self, use_prompt=0):
         openai.api_key = OPENAI_API_KEY
-        print(openai.api_key)
 
     def request_gql_for_graph_llama(self, input_query, subgraph):
         # import regex as re
