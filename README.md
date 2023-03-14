@@ -11,7 +11,7 @@
 
 ## About
 
-ChainBrain is an open-source data visualization tool that allows users to search and generate dashboards for any on-chain data question. With ChainBrain, users can quickly identify patterns, track trends, and discover new insights to help them optimize their strategy and operations. We are using ChatGPT to turn the users' questions into a GraphQL query that we send to various subgraphs by the Graph Protocol. We then pull in the user-requested data and display the results on the frontend. Users can connect with their crypto wallet to sign-in and save visualizations to their personal dashboards.
+ChainBrain is an open-source analytics platform that allows users to search and generate dashboards for any on-chain data question. With ChainBrain, users can quickly identify patterns, track trends, and discover new insights to help them optimize their strategy and operations. We are using ChatGPT to turn the users' questions into a GraphQL query that we send to various subgraphs by the Graph Protocol. We then pull in the user-requested data and display the results on the frontend. Users can connect with their crypto wallet to sign-in and save visualizations to their personal dashboards.
 
 ## Subgraphs we used: 
 
