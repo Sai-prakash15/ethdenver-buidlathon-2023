@@ -16,12 +16,9 @@ api.add_resource(DashboardCreator, "/dashboard", endpoint="dashboard")
 api.add_resource(DashboardViewer, "/dashboard/<dashboard_id>", endpoint="dashboard_view")
 api.add_resource(DashboardForUser, "/dashboard/user/<wallet_address>", endpoint="dashboard_for_user")
 api.add_resource(DashboardSaver, "/dashboard/<int:dashboard_id>", endpoint="dashboard_saver")
-api.add_resource(DashboardFeedback, "/dashboard/<int:dashboard_id>/feedback", endpoint="dashboard_feedback")
 
 
-
-
-@blueprint.before_app_first_request
+@blueprint.before_request
 def register_views():
     apispec.spec.components.schema("UserSchema", schema=UserSchema)
     apispec.spec.path(view=UserResource, app=current_app)

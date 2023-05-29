@@ -1,7 +1,6 @@
 from flask import request
 from flask_restful import Resource
 from flask_jwt_extended import jwt_required
-from backend.api.schemas import UserSchema
 from backend.models import DashboardQueryResult
 from backend.extensions import db
 from backend.commons.pagination import paginate
